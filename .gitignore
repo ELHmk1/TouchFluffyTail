@@ -1,0 +1,4 @@
+*.save
+HellhoundVN/log.txt
+HellhoundVN/errors.txt
+HellhoundVN/traceback.txt
