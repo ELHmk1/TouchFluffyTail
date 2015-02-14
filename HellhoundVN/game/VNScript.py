@@ -1,23 +1,4 @@
-﻿# You can place the script of your game in this file.
-
-# Declare images below this line, using the image statement.
-# eg. image eileen happy = "eileen_happy.png"
-image fia test:
-    #Actual Image File
-    "fia_test.png"
-    
-    #Zoom stuff so it fits
-    zoom 0.85
-    
-# Declare characters used by this game.
-#Defines Fia
-define f = Character('Fia', color="#c8ffc8", what_prefix='"', what_suffix='"')
-
-#Defines the MC
-define mc = Character("Mike", what_prefix='"', what_suffix='"')
-
-# The game starts here.
-label start:
+label blah:
     #Set up two flags 
     $ flag_one = False
     $ flag_two = False
@@ -57,7 +38,7 @@ label start:
             jump little_rain
     
     label lots_rain:
-        f "Finish writing this!"
+        
         #Move to the Apartment Scene
         jump apartment
     
@@ -79,5 +60,3 @@ label start:
             show fia wet_shirt at right
         else:
             show fia soaked at right
-        "Apartment check!"
-    return
