@@ -2,4 +2,4 @@
 HellhoundVN/log.txt
 HellhoundVN/errors.txt
 HellhoundVN/traceback.txt
-HellhoundVN/saves
+HellhoundVN/game/saves/*
