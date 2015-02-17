@@ -1,83 +1,145 @@
 ﻿# You can place the script of your game in this file.
 
-# Declare images below this line, using the image statement.
-# eg. image eileen happy = "eileen_happy.png"
-image fia test:
+# Defines images we'll use
+#The c_ prefix denotes Fia's Hotpants Outfit
+#The s_ prefix denotes Fia's Sweater Outfit
+#The n_ prefix denotes Fia in the nude
+#A 'w' in the prefix denotes a wet version
+#The _u suffix denotes the fact Fia's tail is raised
+
+#All the happy images
+image fia c_happy:
     #Actual Image File
-    "fia_test.png"
+    "Art/c_happy.png"
     
     #Zoom stuff so it fits
     zoom 0.85
-    
-# Declare characters used by this game.
-#Defines Fia
+
+image fia n_happy_u:
+    "Art/n_happy_u.png"
+    zoom 0.85
+
+#All the neutral images
+image fia s_neutral:
+    "Art/s_neutral.png"
+    zoom 0.85
+
+image fia wn_neutral:
+    "Art/wn_neutral.png"
+    zoom 0.85
+
+# Define the characters we'll use
+#Fia
 define f = Character('Fia', color="#c8ffc8", what_prefix='"', what_suffix='"')
 
-#Defines the MC
+#The MC
+#As his inner thoughts will be handled by the narrator, we need to add quotes
 define mc = Character("Mike", what_prefix='"', what_suffix='"')
 
-# The game starts here.
+# The acutal game starts here.
 label start:
-    #Set up two flags 
+    #Set up two flags. First for the rain and second for slow sex
     $ flag_one = False
-    $ flag_two = False
-
-    #Set up the background for the lecture hall
-    scene bg lecture
+    $ slow = False
     
-    "Professor" "...and that is how -1/12 ends up being the sum of all positive integers."
-    "If I didn't just watch him do the proof for it, I'd call him a liar."
-    "But there it is on the board: -1/12."
-    "My mixture of confusion and astonishment seems to be shared throughout the class."
-    "Even the Anubis in the front row is holding her head in her hands as if she's going through an existential crisis."
-    "Luckily for all of our sanity levels, we've finally reached the end of the period."
-    "Professor" "For homework I want you to do problems 4, 8, 13..."
-    "He writes our homework up on the board then dismisses us."
-    "I waste no time in gathering up my things and beelining for the door."
-    "After all, Fia's waiting for me."
-    
-    #Scene transition to the hallway
-    scene bg hallway
+    #Start the VN with Fia & the MC outside
+    scene bg outside
     show fia c_happy at right
-    
-    "As expected, I find my Hellhound girlfriend leaning against the cinderblock wall outside of the lecture hall."
-    "Her classes end about an hour before mine but she likes to wait on campus for me so we can walk home together."
-    "Upon seeing me, her eyes light up and her tail wriggles behind her."
-    f "Well you look like you've seen a ghost."
-    "A ghost floating by in the hallway glares at her, causing Fia to scramble to fix her faux pas."
-    show fia c_embarassed at right
-    f "I mean a real one! Not a Monstergirl one!"
-    
+    f "We're outside!"
+
     #First choice. Determines how fast they head home and how wet they get.
     menu:
-        "Pat her head reassuredly":
+        "Delay":
             jump lots_rain
         
-        "Tease her a little":
+        "No Delay":
             jump little_rain
     
     label lots_rain:
-        f "Finish writing this!"
+        #Set the first flag
+        $ flag_one = True
+        
+        show fia wn_neutral
+        f "I'm soaked!"
         #Move to the Apartment Scene
         jump apartment
     
-    label little_rain:
-        #Set the first flag
-        $ flag_one = True
-
-        "I try and fail not to grin at her misfortune."
-        mc "Good thing you're not a Poly Sci major."
-        show fia c_pout at right
-        f "Oh forget it. Come on, you."
-        
-        #Move to the Apartment Scene
+    label little_rain:        
+        f "We got inside just in time!"
+        jump apartment
 
     label apartment:
         scene bg apartment
         #Check how long they were out in the rain and fill in based on that
         if flag_one:
-            show fia wet_shirt at right
+            show fia wc_happy at right
         else:
-            show fia soaked at right
-        "Apartment check!"
+            show fia c_happy at right
+        f "Pomf!"
+        f "What are we going to do in the apartment, Mike?"
+
+        #Second choice. Determines how hard Fia goes at him
+        menu:
+            "Take a Shower":
+                jump shower
+        
+            "Build an Awesome Fort":
+                jump fort
+
+        #The beginnings of the Shower Scene
+        label shower:
+            scene bg shower
+            show fia wn_neutral at right
+            f "I'm going to enjoy playing with my bone~"
+
+            #Third choice. Does the MC want to go slower?
+            if flag_one:
+                menu:
+                    "Let's slow down a little~":
+                        $ slow = True
+                        jump fort_two
+                    "Give her what she wants!":
+                        jump shower_two
+            else:
+                jump shower_two
+        
+        #Actual shower scene
+        label shower_two:
+            show fia wn_neutral at right
+            f "We're going to steam up the glass~"
+            jump end_one
+        
+        #First Ending (After the Shower)
+        label end_one:
+            show fia n_happy_u at right
+            f "Don't think that you're off the hook yet!"
+            return
+        
+        #The Beginnings of the Fort Scene
+        label fort:
+            scene bg fort
+            show fia s_neutral at right
+            f "I'm going to build this fort then fuck you in it."
+            jump fort_two
+            
+        #The Actual Fort Scene
+        label fort_two:
+            #If we're coming from the shower, do some prework
+            if slow:
+                show fia n_happy_u at right
+                f "Alright lover boy. We'll do it your way."
+                f "But not because I love you or anything!"
+                scene bg fort
+            f "Slow sex is best sex."
+            jump end_two
+        
+        #Second Ending (After Fort)
+        label end_two:
+            show fia n_happy_u at right
+            f "I hope you didn't have plans this weekend."
+            mc "Huh?"
+            "She giggles, pulling me closer."
+            f "We're not leaving this fort until were an absolute mess~"
+            mc "Uh oh."
+            return
     return
