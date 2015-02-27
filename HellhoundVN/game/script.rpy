@@ -1,6 +1,10 @@
 ﻿# You can place the script of your game in this file.
 
-# Defines images we'll use
+# Defines backgrounds we'll use
+image bg outside:
+    "assets/backgrounds/outside_bg.png"
+
+# Defines sprites we'll use
 #The c_ prefix denotes Fia's Hotpants Outfit
 #The s_ prefix denotes Fia's Sweater Outfit
 #The n_ prefix denotes Fia in the nude
@@ -13,33 +17,33 @@ image fia c_fire:
     "assets/sprites/fia_clothed_grin.png"
     
     #Zoom stuff so it fits
-    zoom 0.55
+    #zoom 0.55
 
 image fia c_neutral:
     "assets/sprites/fia_clothed_neutral.png"
-    zoom 0.55
+    #zoom 0.55
 
 image fia c_smile:
     "assets/sprites/fia_clothed_smile.png"
-    zoom 0.55
+    #zoom 0.55
 
 image fia cw_pout:
     "assets/sprites/fia_clothedwet_pout.png"
-    zoom 0.55
+    #zoom 0.55
 
 #All the nude sprites
 image fia n_smile:
     "assets/sprites/fia_nude_smile.png"
-    zoom 0.55
+    #zoom 0.55
     
 image fia nw_smile:
     "assets/sprites/fia_nudewet_smile.png"
-    zoom 0.55
+    #zoom 0.55
 
 #All the sweater sprites
 image fia s_bite:
     "assets/sprites/fia_sweater_lipbite.png"
-    zoom 0.55
+    #zoom 0.55
 
 # Define the characters we'll use
 #Fia
