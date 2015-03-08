@@ -51,7 +51,7 @@ image fia s_bite:
 
 # Define the characters we'll use
 #Fia
-define f = Character('Fia', color="#c8ffc8", what_prefix='"', what_suffix='"')
+define f = Character('Fia', color="#f25000", what_prefix='"', what_suffix='"')
 
 #The MC
 #As his inner thoughts will be handled by the narrator, we need to add quotes
