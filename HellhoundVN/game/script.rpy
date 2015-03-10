@@ -13,41 +13,19 @@ image black = Solid((0, 0, 0, 255))
 #The _u suffix denotes the fact Fia's tail is raised
 
 #All the clothed sprites
-image fia c_fire:
-    #Actual Image File
-    "assets/sprites/fia_clothed_grin.png"
-    
-    #Zoom stuff so it fits
-    #zoom 0.55
-
-image fia c_neutral:
-    "assets/sprites/fia_clothed_neutral.png"
-    #zoom 0.55
-
-image fia c_smile:
-    "assets/sprites/fia_clothed_smile.png"
-    #zoom 0.55
-
-image fia c_pout:
-    "assets/sprites/fia_clothed_pout.png"
-
-image fia cw_pout:
-    "assets/sprites/fia_clothedwet_pout.png"
-    #zoom 0.55
+image fia c_fire = "assets/sprites/fia_clothed_grin.png"
+image fia c_neutral = "assets/sprites/fia_clothed_neutral.png"
+image fia c_smile = "assets/sprites/fia_clothed_smile.png"
+image fia c_pout = "assets/sprites/fia_clothed_pout.png"
+image fia c_puppy = "assets/sprites/fia_clothed_sad.png"
+image fia cw_pout = "assets/sprites/fia_clothedwet_pout.png"
 
 #All the nude sprites
-image fia n_smile:
-    "assets/sprites/fia_nude_smile.png"
-    #zoom 0.55
-    
-image fia nw_smile:
-    "assets/sprites/fia_nudewet_smile.png"
-    #zoom 0.55
+image fia n_smile = "assets/sprites/fia_nude_smile.png"  
+image fia nw_smile = "assets/sprites/fia_nudewet_smile.png"
 
 #All the sweater sprites
-image fia s_bite:
-    "assets/sprites/fia_sweater_lipbite.png"
-    #zoom 0.55
+image fia s_bite = "assets/sprites/fia_sweater_lipbite.png"
 
 # Define the characters we'll use
 #Fia
@@ -62,13 +40,9 @@ init:
     #Remember to inflate the iris to be 1920x1080!
     $ circirisout = ImageDissolve("assets/backgrounds/circleiris.png", 1.0, 8)
     $ circirisin = ImageDissolve("assets/backgrounds/circleiris.png", 1.0, 8, reverse=True)
-    $ flag_one = False
-    $ slow = False
 
 # The acutal game starts here.
 label start:
-    #Set up two flags. First for the rain and second for slow sex
-    
     #Start the VN with Fia & the MC outside
     scene black
     "..."
@@ -200,12 +174,14 @@ label apartment:
 label acceptance:
     show bg shower with fade
     show fia n_smile with dissolve
+    f "Glad you decided to join me~"
     jump shower_sex
 
 #Slightly longer scene as Fia strips the MC and "forces" him into the shower
 label shower_foreplay:
     show bg shower with fade
     show fia n_fire with dissolve
+    f "Yeah you're not getting away that easy~"
     jump shower_sex
 
 #Soapy fun times followed by some slippery sex
@@ -219,4 +195,3 @@ label post_shower:
     show fia s_bite with dissolve
     f "The sooner you write this the sooner I can love you tenderly in our fort~"
     return
-
