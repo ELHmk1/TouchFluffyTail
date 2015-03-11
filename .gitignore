@@ -3,5 +3,5 @@ HellhoundVN/log.txt
 HellhoundVN/errors.txt
 HellhoundVN/traceback.txt
 HellhoundVN/game/saves/*
-HellhoundVN/tmp/navigation.json
-HellhoundVN/game/bytecode.rpyb
+HellhoundVN/tmp/*
+HellhoundVN/game/bytecode*
