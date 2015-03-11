@@ -1,17 +1,20 @@
 ﻿# Main script of the game
+# Reference http://renpyhandbook.tumblr.com/code-tutorials as needed
 
+#########################################
 # Defines backgrounds we'll use
 image bg outside = "assets/backgrounds/outside_bg.png"
 image bg shower = "assets/backgrounds/bathroom_bg.png"
 image bg apartment = Placeholder("bg")
 image black = Solid((0, 0, 0, 255))
 
+#########################################
 # Defines sprites we'll use
 #The c_ prefix denotes Fia's Hotpants Outfit
 #The s_ prefix denotes Fia's Sweater Outfit
 #The n_ prefix denotes Fia in the nude
 #A 'w' in the prefix denotes a wet version
-#The _u suffix denotes the fact Fia's tail is raised
+#The _u suffix denotes the fact Fia's tail is raised (Default on Fire/Nude)
 
 #All the clothed sprites
 image fia c_fire = "assets/sprites/fia_clothed_grin.png"
@@ -20,32 +23,45 @@ image fia c_smile = "assets/sprites/fia_clothed_smile.png"
 image fia c_pout = "assets/sprites/fia_clothed_pout.png"
 image fia c_puppy = "assets/sprites/fia_clothed_sad.png"
 image fia cw_pout = "assets/sprites/fia_clothedwet_pout.png"
+image fia cw_smile = Placeholder("girl")
+image fia cw_fire = Placeholder("girl")
 
 #All the nude sprites
 image fia n_smile = "assets/sprites/fia_nude_smile.png"  
+image fia n_fire = Placeholder("girl")
 image fia nw_smile = "assets/sprites/fia_nudewet_smile.png"
+image fia nw_fire = Placeholder("girl")
 
 #All the sweater sprites
 image fia s_bite = "assets/sprites/fia_sweater_lipbite.png"
 
+#########################################
 # Define the characters we'll use
 #Fia
-define f = Character('Fia', color="#f25000", what_prefix='"', what_suffix='"')
+define f = Character('Fia', color="#CC5252", what_prefix='"', what_suffix='"')
 
 #The MC
-#As his inner thoughts will be handled by the narrator, we need to add quotes
-define mc = Character("Mike", what_prefix='"', what_suffix='"')
+#As his inner thoughts will be handled by the narrator we need to add quotes
+define mc = Character("Mike", color="#F0FFFF", what_prefix='"', what_suffix='"')
 
+#########################################
 #Transitions and variables
 init:
-    #Remember to inflate the iris to be 1920x1080!
     $ circirisout = ImageDissolve("assets/backgrounds/circleiris.png", 1.0, 8)
     $ circirisin = ImageDissolve("assets/backgrounds/circleiris.png", 1.0, 8, reverse=True)
-
+    
+    transform basicfade:
+        on show:
+            alpha 0.0
+            linear 1.0 alpha 1.0
+        on hide:
+            linear 1.0 alpha 0.0 
+            
 init python:
     #Messes with the default dissolve
-    define.move_transitions("dissolve",0.4)
+    define.move_transitions("dissolve", 0.5)
 
+#########################################
 # The acutal game starts here.
 label start:
     #Start the VN with Fia & the MC outside
@@ -57,7 +73,6 @@ label start:
     "After all, Fia and I chose to stay in town over Spring Break for this very reason."
     "None of the usual hustle and bustle, none of the interruptions."
     "Just the two of us taking it easy and relaxing any way we can."
-    "???" "...ike."
     "???" "MIKE."
     "Perhaps I spoke too soon about being able to relax..."
     
@@ -83,7 +98,7 @@ label start:
     "Her eyes shift downwards while her tail and ears droop."
     "It's understandable. One of her quirks is that she hates getting wet outside of showers and baths."
     "Those, for some reason, she absolutely adores."
-    "Between that and the fact her current outfit is rather... susceptible to moisture and it's no wonder she's anxious."
+    "Between that the obvious and it's no wonder she's anxious."
     mc "Well I suppose we'd better head back then."
     f "Yeah..."
     show fia c_puppy with dissolve
@@ -91,18 +106,13 @@ label start:
     "I know she's not doing it on purpose but it still makes me feel awful."
     "I should probably try and get her mind off of it."
 
-    #First choice. Determines whether the MC opts for a tease or tries to be comforting
-    menu:
-        "Tease her a little":
-            jump tease
-        
-        "Try to be comforting":
-            jump comfort
-            
-    #We shouldn't ever get here but just in case...
+    #Removed dialogue choice. Just go to the next scene.
+    jump tease
+    
+    #We should never get here, but just in case...
     return
 
- #Scene used if the MC chooses to tease Fia
+#Scene where the MC teases Fia for being anxious about the rain
 label tease:
     "The quickest way to get her to perk up might be to rib her a little."
     "A little tease there, a little sexual innuendo there..."
@@ -113,15 +123,15 @@ label tease:
     mc "I may have been out cold but I could still tell you were groping at my..."
     show fia c_pout with dissolve
     f "I did no such thing!"
-    "And yet her tail is wagging. Seems I guessed right."
+    "And yet your tail is wagging. Seems I guessed right."
     mc "Uh huh. It's kinda hard to miss your paws, Fia."
     "She lets out a little whine in response. Curse her adorableness."
     f "Okay fine. I maybe sorta thought about waking you up in a different way."
     mc "Oh?"
     show fia c_fire with dissolve
     f "It involved forcing you up against the tree, tearing your clothes off, and..."
-    "I wave her off before she gets too fired up. Mostly for the sake of my new shirt."
-    mc "Alright alright, I get it. Let's getting walk though before you decide to change your mind and we get caught in the rain."
+    "I wave her off before she gets too fired up. Mostly for the sake of my brand new shirt."
+    mc "Alright alright, I get it. Let's getting walking before you decide to change your mind and we get caught in the rain."
     "With that I start walking down the road back towards our apartment. Fia's quick to catch up."
     show fia c_smile with dissolve
     f "That's why you were playing possum, weren't you?"
@@ -145,60 +155,12 @@ label tease:
     #Move to the Wet T-Shirt Scene
     jump wetshirt
 
-label comfort: 
-    "A little affection can go a long way. Especially with dogs."
-    "Not that Fia is anything but a proud Hellhound, but that she shares some basic characteristics."
-    "So I do what comes naturally: I reach out and pull her close into a hug."
-    #Close up here? Need to figure out how to do that
-    #If we do go with a close up it'll persist throughout this scene
-    mc "Hey, Fia?"
-    f "Yeah?"
-    "I smile back as warmly as I can muster."
-    mc "We can still cuddle when we get back home, you know."
-    show fia c_smile with dissolve
-    "A hint of a grin creeps across her face. A start, at least."
-    f "I know..."
-    f "It's just... it feels more special out here."
-    "I give her a squeeze, which she promptly returns."
-    mc "If I didn't know any better, I might think you're criticizing my cuddling abilities."
-    "She lets out a sigh and pulls back."
-    #If we did a close up, this is where we'd go back to normal
-    show fia c_neutral with dissolve
-    f "Mmm..."
-    f "They could do with some improving."
-    "Her deadpan tone might confuse anyone else, but not me."
-    "As such, I match her tone."
-    mc "You're right. Clearly the tree is the integral part of our cuddling equation."
-    f "Exactly. Without the tree it means nothing at all."
-    "I dramatically toss a hand over my face, as if in shame."
-    mc "I suppose next you'll tell me that you want to bring other greenery into the bedroom..."
-    f "Indeed. We clearly need to see other flora."
-    "I turn back towards our tree, shaking my fist in mock rage."
-    mc "Curse you and your damn mystical cuddling properties!"
-    show fia c_smile with dissolve
-    "It seems that is finally a bit too much for her to continue our humorous charade."
-    "This time the grin that appears remains on her face."
-    f "But really, you can't help but admire all that tree's done for us."
-    "I nod, then start to walk beside her down along the road."
-    "After all, there IS rain coming. We can't just sit here pillow-talking."
-    "That can come later."
-    mc "It's where we met, where we had our first kiss..."
-    show fia c_fire with dissolve
-    f "It's also where I jumped you for the first time~"
-    "I let out a chuckle."
-    mc "Maybe we really should bring the stupid thing with us."
-    f "Nah. It'd get in the way of me smothering you with affection."
-    mc "Only affection?"
-    "She bites her lip, her intentions clear."
-    f "Well I mean if you want me to spell it out in graphic detail..."
-
-    #Move to the Wet T-Shirt Scene
-    jump wetshirt
-
+#The obligatory wet t-shirt scene
 label wetshirt:
     #Thunder sound here?
     with vpunch
-    "Before I can reply, though, a crack of thunder peels across the land."
+    "Speaking of..."
+    "A crack of thunder peels across the land, stopping me from replying."
     "Seconds later the windfront reaches us, carrying with it the first drops of rain."
     "It seems the storm was closer than either of us thought."
     show fia c_pout with dissolve
@@ -214,7 +176,7 @@ label wetshirt:
     jump apartment
     
 label apartment:
-    scene bg apartment with fade
+    scene bg apartment with basicfade
     show fia cw_pout with dissolve
     f "I'm going to take a shower, you coming?"
     

@@ -144,12 +144,11 @@ init -1 python hide:
     ## These let you customize the default font used for text in Ren'Py.
 
     ## The file containing the default font.
-
-    # style.default.font = "DejaVuSans.ttf"
+    # Mess with this later
+    #style.default.font = "assets/SilverAgeLCBB.ttf"
 
     ## The default size of text.
-
-    # style.default.size = 22
+    #style.default.size = 32
 
     ## Note that these only change the size of some of the text. Other
     ## buttons have their own styles.
