@@ -109,15 +109,15 @@ init -1 python hide:
     ## Padding is space inside the window, where the background is
     ## drawn.
 
-    # style.window.left_padding = 6
-    # style.window.right_padding = 6
-    # style.window.top_padding = 6
-    # style.window.bottom_padding = 6
+    style.window.left_padding = 35
+    style.window.right_padding = 35
+    style.window.top_padding = 15
+    style.window.bottom_padding = 0
 
     ## This is the minimum height of the window, including the margins
     ## and padding.
 
-    # style.window.yminimum = 250
+    style.window.yminimum = 155
 
 
     #########################################
@@ -145,10 +145,10 @@ init -1 python hide:
 
     ## The file containing the default font.
     # Mess with this later
-    #style.default.font = "assets/SilverAgeLCBB.ttf"
+    style.default.font = "assets/SilverAgeLCBB.ttf"
 
     ## The default size of text.
-    #style.default.size = 32
+    style.default.size = 32
 
     ## Note that these only change the size of some of the text. Other
     ## buttons have their own styles.
@@ -285,3 +285,19 @@ init -1 python hide:
 
     #########################################
     ## More customizations can go here.
+    
+    style.say_who_window.xalign = 0.0
+    style.say_who_window.yalign = 1.0
+    style.say_who_window.left_padding = 15
+    style.say_who_window.top_padding = 15
+    style.say_who_window.right_padding = 15
+    style.say_who_window.bottom_padding = 15
+    style.say_who_window.xminimum = 150
+    style.say_who_window.yminimum = 15
+    style.say_who_window.xfill = False
+    
+    style.say_label.drop_shadow = [(1, 1)]
+    style.say_label.drop_shadow_color = "#000000"
+    style.say_label.size = 36
+    style.say_label.text_align = 0.5
+    style.say_label.xalign = 0.5
