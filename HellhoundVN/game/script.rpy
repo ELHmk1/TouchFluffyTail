@@ -54,11 +54,19 @@ define f = Character('Fia', color="#CC5252", what_prefix='"', what_suffix='"', s
 define mc = Character("Mike", color="#F0FFFF", what_prefix='"', what_suffix='"', show_two_window=True)
 
 #########################################
-#Transitions and variables
+#Transitions, variables, and what not
 init:
     $ circirisout = ImageDissolve("assets/backgrounds/circleiris.png", 1.5, 8)
     $ circirisin = ImageDissolve("assets/backgrounds/circleiris.png", 1.5, 8, reverse=True)
-            
+    
+    image rain:
+        "assets/backgrounds/rain.png"
+        0.3
+        "assets/backgrounds/rain2.png"
+        0.3
+        "assets/backgrounds/rain3.png"
+        0.3
+        repeat
 #init python:
     #Messes with the default dissolve
     #define.move_transitions("dissolve", 0.5)
@@ -174,6 +182,7 @@ label wetshirt:
     
     #Need to make a rain overlay of sorts
     scene bg outside_rain with dissolve
+    show rain
     "..."
     "It's times like this that make me consider always carrying an umbrella around."
     "Even my underwear is drenched. And not in the good way."
