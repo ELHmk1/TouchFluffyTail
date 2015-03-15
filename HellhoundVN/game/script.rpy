@@ -8,6 +8,7 @@ image bg outside_rain = im.MatrixColor("assets/backgrounds/outside_bg.png", im.m
 image bg shower = "assets/backgrounds/bathroom_bg.png"
 image bg apartment = Placeholder("bg")
 image black = Solid((0, 0, 0, 255))
+image insert_cg1 = "assets/CGs/insert_cg1.png"
 
 #########################################
 # Defines sprites we'll use
@@ -23,7 +24,6 @@ image fia c_fire = "assets/sprites/fia_clothed_grin.png"
 image fia c_neutral = "assets/sprites/fia_clothed_neutral.png"
 image fia c_smile = "assets/sprites/fia_clothed_smile.png"
 image fia c_pout = "assets/sprites/fia_clothed_pout.png"
-image fia c_puppy = "assets/sprites/fia_clothed_sad.png"
 image fia cw_pout = "assets/sprites/fia_clothedwet_pout.png"
 image fia cw_neutral = Placeholder("girl")
 image fia cw_smile = Placeholder("girl")
@@ -38,7 +38,8 @@ image fia nw_smile = "assets/sprites/fia_nudewet_smile.png"
 image fia nw_fire = Placeholder("girl")
 image fia nw_bite = Placeholder("girl")
 image fia nw_neutral = Placeholder("girl")
-image fia nws_smile = Placeholder("girl")
+image fia nws_smile = "assets/sprites/fia_nude_soap_smile.png"
+image fia nws_fire = Placeholder("girl")
 
 #All the sweater sprites
 image fia s_bite = "assets/sprites/fia_sweater_lipbite.png"
@@ -97,14 +98,14 @@ init python:
     
     #style.nvl_window.background = "nvl_window.png"
     style.nvl_window.xpadding = 55
-    style.nvl_window.ypadding = 55
+    style.nvl_window.ypadding = 305
 
     config.empty_window = nvl_show_core
     config.window_hide_transition = dissolve
     config.window_show_transition = dissolve
     
     #Messes with the default dissolve
-    define.move_transitions("dissolve", 0.35)
+    define.move_transitions("dissolve", 0.4)
 
 #########################################
 # The acutal game starts here.
@@ -131,9 +132,9 @@ label start:
     "...no rest for the wicked, I suppose."
     
     #Open his eyes
-    scene bg outside with circirisout
-    #Anytime she changes sprites add "with dissolve"
-    show fia c_pout with dissolve
+    scene bg outside 
+    show fia c_pout
+    with circirisout
     "As I open my eyes I'm greeted with the sight of my girlfriend looming over me."
     "I didn't even notice her leave my side under the tree we'd stopped at to rest."
     f "Jeez."
@@ -202,14 +203,12 @@ label start:
     mc "You do remember that we're due for rain later, right?"
     f "Yeah... what about it?"
     mc "Well if we keep flirting like this, we'll never make it back to the apartment in time."
-    mc "I don't know about you, but I can't walk very well on three legs."
-    "Fia takes it in stride."
-    "I know she'd pounce me if she really wanted to, but it seems she's content with waiting."
     show fia c_pout with dissolve
-    "...Mostly."
-    f "It's not like you're a tripod, you know."
-    f "I can easily make your \"third leg\" more managable if you'd let me."
+    "It doesn't take her long to see right through me to the real problem."
+    f "I can easily make THAT more managable, right now, if you'd let me."
+    "I shake my head in response."
     mc "You know how I am. The thought of being watched terrifies me."
+    "Her mouth opens and closes twice wordlessly. Then her features soften."
     show fia c_neutral with dissolve
     f "It just occurred to me that we've never talked about that sort of thing before."
     mc "Huh?"
@@ -237,11 +236,11 @@ label start:
 
 #The obligatory wet t-shirt scene
 label wetshirt:
-    hide fia with dissolve
+    hide fia
     window show
     mc_nvl "We spend the next ten or so minutes walking in silence."
     mc_nvl "Along the way, Fia returns to walking at my side."
-    mc_nvl "Much closer than before, I might add."
+    mc_nvl "Much closer than before I might add."
     mc_nvl "So close, in fact, that I can't help feel the occasional tingle as her fur brushes against my skin."
     mc_nvl "I have to visibly concentrate on keeping a straight face. Which just makes Fia all the more radiant."
     mc_nvl "Sadly, it seems my stoic front is short lived..."
@@ -311,13 +310,15 @@ label wetshirt:
     "Seeing and hearing about something she's passionate about seems special, in a way."
     mc "I guess I'm just surprised, since you don't actually ever submit the photographs themselves."
     "It's true. She uses them exclusively as references for her painting and other art."
+    "You wouldn't think a Hellhound could paint with paws and claws like those, let alone take photos."
+    "But her work speaks for itself."
     f "I like keeping things fresh in my mind."
     f "That or it can be handy when I come back to something later and wonder what I was working towards."
     f "Which... come to think of it..."
     show fia cw_fire with dissolve
     "Uh oh. I know that look."
-    f "I seem to recall working on some wood earlier. Any thoughts?"
-    "Damn it Fia. I was doing so well..."
+    f "I seem to recall working on something not too long ago..."
+    "And I was doing so well..."
     "Maybe if I play it cool, I'll buy myself some time."
     mc "I..."
     "Of course, as I open my mouth to speak, she steps right in front of me and stops."
@@ -336,11 +337,10 @@ label wetshirt:
     f "I hope you know what you've started~"
     "I let out a hearty laugh."
     mc "Of course I do. And I know you know I do because your hand wandered again."
-    "It's true. My fly seems to be suspiciously down once more."
+    "It's true. My fly seems to be down once more."
     show fia cw_pout with dissolve
     f "Oh I am SO going to tear into you when we get home."
     "I wink at her and start walking again."
-    mc "We'd better stop flirting shamelessly and hurry then."
     show fia cw_smile with dissolve
     "As we plod onwards, Fia whispers something under her breath."
     "I don't quite catch all of it though."
@@ -351,18 +351,28 @@ label wetshirt:
 #MC & Fia enter the apartment. They quickly strip and hit the shower.
 label apartment:
     scene bg apartment with fade
-    "We arrive at our apartment some ten minutes later."
+    "We finally arrive at our apartment some ten minutes later."
     "Seemingly just in time too, as the rain starts coming down even harder."
     
     show fia cw_smile with dissolve
     f "I guess it's a good thing we didn't do it out there."
     mc "Yeah, we'd probably be drowning right about now if we did."
     "She flashes a grin at me, then strips off her wet clothes."
+    "They're tossed aside like nothing into a pile by the laundry room door."
     show fia nw_smile with dissolve
     f "Come on. Before we get too riled up let's at least try to wash up."
-    "I follow her example and ditch my soggy, drenched coverings."
-    "Now both nude, we both take a moment to drink the other in. Fia even bites her lip in anticipation."
+    "I follow her example and start to dtich my soggy, drenched coverings."
+    "As I do, I can't help but comment on something."
+    mc "It is kinda odd though, washing up just to get dirty all over again."
+    "She snickers at that, eyes drinking me in as I continue to strip."
+    f "It's a different kind of dirty though. A good kind."
+    mc "No argument there, I suppose."
+    "I finishly shortly thereafter. Not because I was deliberately stalling but because I was trying not to lose my balance."
+    "Now both nude, we both take a moment to stare at each other."
+    "Fia's first to crack, biting her lip in anticipation."
     show fia nw_bite with dissolve
+    "From what I know about her, she's about two seconds away from tackling me when she looks like that."
+    "Again, that's not a bad thing. Just that that energy needs to be temporarily redirected."
     mc "So about that shower..."
     f "Huh...?"
     "I repeat myself. Which is luckily all it takes to snap her out of it."
@@ -371,21 +381,76 @@ label apartment:
     "She turns deftly on her heels and starts leading the way to the bathroom."
     "All along the way she puts extra emphasis into her hip movements."
     "Even her tail gets into the seductive action: swishing side to side to accent her stride."
+    "As arousing as the action is, I can't help but notice one thing."
+    "Each flick is sending beads of water splattering against the wall and me"
+    "Either she doesn't notice or doesn't care. Perhaps I should follow suit and focus on what's important."
+    "...Not that that's hard."
     
     scene bg shower with fade
+    "Once we reach the bathroom Fia wastes no time."
+    "She hops into the glass enclosure and starts up the hot water."
+    "Soon steam fills the room, and with it a welcome heat."
+    #show steam
+    show fia nw_smile
+    with dissolve
+    "The moisture also comes with a moan as the water washes over her."
+    f "Ahhhhhh~ Much much better..."
+    "After tossing her hair out of her eyes, she turns to beckon at me with a finger."
+    f "Well just don't stand there~"
+    mc "Just wanted to give you a second or two."
+    "We're pretty fortunate in that we have a pretty large bathroom."
+    "Otherwise there'd never be enough room for us to take a shower together like this."
+    "...though it's not like we're anything but close right now."
+    "And since I'm right next to her I can see where all this steam is coming from."
+    "About half of the water that hits her fur seems to be instantly turning to vapor."
+    "Although I've seen it before I have to admit, it's a pretty neat way to keep her coat clean."
+    "Though it does leave her ashen skin rather vulnerable."
+    mc "Pass the soap, would you?"
+    f "Soap, right..."
+    "Even over the sound of the rushing water I can hear her short, excited breaths echoing across the tiles."
+    "She's so close to breaking. Evidenced further when she bends over and purposely flaunts herself to me."
+    f "Cinammon or Apple scented?"
+    "Don't stare at it."
+    "Don't stare..." 
+    "...and I'm looking at it."
+    mc "Uh... cherry."
+    "She giggles and slowly stands up right with a bottle in hand."
+    f "We don't have cherry. But let's just go with apple~"
+    show fia nws_smile with dissolve
+    window show
+    mc_nvl "Somehow we manage to get halfway through rubbing each other down."
+    mc_nvl "Which, given the circumstances, seems like a miniature miracle."
+    mc_nvl "Each new inch I slide my hands over causes her to pry at my own skin and groan in delight."
+    mc_nvl "But our restraint finally breaks when we start on each other's chests."
+    window hide
+    nvl clear
+    f "Mhn~"
+    f "That's it. Rub it in nice and slow~"
+    "Dutifully I continue my work. Starting with the undersides of her breasts."
+    "From there my hands move upwards, coming to cup them before applying a squeeze."
+    mc "Like this?"
+    "I don't even wait for a reply before letting my thumbs slip over her areola."
+    show fia nws_fire with dissolve
+    f "Ah! Yes~"
+    "Her claws, currently on my chest, dig into my skin as a result. Not enough to be unpleasantly painful though."
+    "I repeat the process once more for good measure."
+    "Though this time, it's enough to break Fia."
+    f "Hnn... I can't take it anymore~"
+    "She whirls on the spot and throws herself against the glass door while lifting her ass."
+    f "Get inside me this instant and don't you dare stop until the water goes cold."
     
-    #Originally we had a choice here. But fuck that noise, Fia's switch has been flipped!  
+    #Onto the actual sex scene!
     jump shower_sex
 
-
-#Soapy fun times followed by some slippery sex
+#Actual sex scene
 label shower_sex:
-    show fia nws_smile with dissolve
-    f "Hurry up and write this so I can play with my bone!"
+    scene insert_cg1 with fade
+    pause
+    f "Hurry up and write this!"
     jump post_shower
 
 #After the shower scene
 label post_shower:
     show fia s_bite with dissolve
-    f "The sooner you write this the sooner I can love you tenderly in our fort~"
+    f "The sooner you write this the sooner I can love you tenderly in the bedroom~"
     return
