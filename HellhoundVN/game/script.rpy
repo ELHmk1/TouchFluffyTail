@@ -25,6 +25,7 @@ image fia c_smile = "assets/sprites/fia_clothed_smile.png"
 image fia c_pout = "assets/sprites/fia_clothed_pout.png"
 image fia c_puppy = "assets/sprites/fia_clothed_sad.png"
 image fia cw_pout = "assets/sprites/fia_clothedwet_pout.png"
+image fia cw_neutral = Placeholder("girl")
 image fia cw_smile = Placeholder("girl")
 image fia cw_fire = Placeholder("girl")
 image fia cw_fire_smile = Placeholder("girl")
@@ -32,9 +33,11 @@ image fia cw_fire_smile = Placeholder("girl")
 #All the nude sprites
 image fia n_smile = "assets/sprites/fia_nude_smile.png"  
 image fia n_fire = Placeholder("girl")
+image fia n_neutral = Placeholder("girl")
 image fia nw_smile = "assets/sprites/fia_nudewet_smile.png"
 image fia nw_fire = Placeholder("girl")
 image fia nw_bite = Placeholder("girl")
+image fia nw_neutral = Placeholder("girl")
 image fia nws_smile = Placeholder("girl")
 
 #All the sweater sprites
@@ -52,6 +55,8 @@ define f = Character('Fia', color="#CC5252", what_prefix='"', what_suffix='"', s
 #The MC
 #As his inner thoughts will be handled by the narrator we need to add quotes
 define mc = Character("Mike", color="#F0FFFF", what_prefix='"', what_suffix='"', show_two_window=True)
+#NVL mode narrator
+define mc_nvl = Character(None, kind=nvl)
 
 #########################################
 #Transitions, variables, and what not
@@ -61,140 +66,226 @@ init:
     
     image rain:
         "assets/backgrounds/rain.png"
-        0.3
+        0.2
         "assets/backgrounds/rain2.png"
-        0.3
+        0.2
         "assets/backgrounds/rain3.png"
-        0.3
+        0.2
         repeat
-#init python:
+
+init python:
+    #NVL stuff
+    menu = nvl_menu
+
+    # The color of a menu choice when it isn't hovered.
+    style.nvl_menu_choice.idle_color = "#ccccccff"
+
+    # The color of a menu choice when it is hovered.
+    style.nvl_menu_choice.hover_color = "#ffffffff"
+
+    # The color of the background of a menu choice, when it isn't
+    # hovered.
+    style.nvl_menu_choice_button.idle_background = "#00000000"
+
+    # The color of the background of a menu choice, when it is
+    # hovered.
+    style.nvl_menu_choice_button.hover_background = "#ff000044"
+
+    # How far from the left menu choices should be indented.
+    style.nvl_menu_choice_button.left_margin = 20
+
+    
+    #style.nvl_window.background = "nvl_window.png"
+    style.nvl_window.xpadding = 55
+    style.nvl_window.ypadding = 55
+
+    config.empty_window = nvl_show_core
+    config.window_hide_transition = dissolve
+    config.window_show_transition = dissolve
+    
     #Messes with the default dissolve
-    #define.move_transitions("dissolve", 0.5)
+    define.move_transitions("dissolve", 0.35)
 
 #########################################
 # The acutal game starts here.
 label start:
-    #Start the VN with Fia & the MC outside
-    scene black
-    "..."
-    "It's funny how quickly one loses track of time when you're sleeping under the sun."
-    "Thirty minutes, an hour, three hours... I honestly can't say how long I've been here."
-    "Not that that bothers me."
-    "After all, Fia and I chose to stay in town over Spring Break for this very reason."
-    "None of the usual hustle and bustle, none of the interruptions."
-    "Just the two of us taking it easy and relaxing any way we can."
+    #Start the VN with the MC resting
+    scene black with fade
+    window show
+    mc_nvl "..."
+    mc_nvl "It's funny how quickly one loses track of time when you're sleeping under the afternoon sun."
+    mc_nvl "Thirty minutes, an hour, three hours... I honestly can't say how long I've been here."
+    mc_nvl "Not that that bothers me."
+    mc_nvl "After all, Fia and I just finished a rather long hike."
+    mc_nvl "She wanted to get a certain snapshot for her work, something about the lighting."
+    mc_nvl "Naturally I went with her."
+    mc_nvl "Some six hours later and we'd only just made it back to the outskirts of roads more familiar."
+    mc_nvl "She might be able to go that long without rest, but not me."
+    window hide
+    nvl clear
+    un "Mike~"
+    "Please no."
+    un "Mike."
+    "No. I don't want to get up."
     un "MIKE."
-    "Perhaps I spoke too soon about being able to relax..."
+    "...no rest for the wicked, I suppose."
     
     #Open his eyes
     scene bg outside with circirisout
     #Anytime she changes sprites add "with dissolve"
     show fia c_pout with dissolve
     "As I open my eyes I'm greeted with the sight of my girlfriend looming over me."
-    "I didn't even notice her leave my side under our tree."
-    "There's plenty of good napping spots this far out in the hills, but we always come back to this one in particular."
-    "I'm not entirely sure why we do at this point. Force of habit maybe?"
-    "In any case, it seems Fia's tired of laying about."
+    "I didn't even notice her leave my side under the tree we'd stopped at to rest."
     f "Jeez."
-    f "I've been trying to wake you up for at least five minutes now!"
+    f "I've been trying to wake you for at least five minutes now!"
     "I let out a yawn and stretch before standing."
-    mc "Did something come up?"
+    "There's even an audible pop as my shoulder rotates."
+    mc "Not everyone can go as long as you do, Fia."
     show fia c_neutral with dissolve
-    f "Maybe. Take a look over there."
-    "She points over my shoulder at the sky behind us."
-    "The normally crystal-blue horizon seems to be growing ever darker. An assemblage of clouds, thunderheads even."
-    mc "Huh. I didn't think we were due for rain until tomorrow?"
-    f "And we were having such a lovely time too..."
-    "Her eyes shift downwards while her tail and ears droop."
-    "It's understandable. One of her quirks is that she hates getting wet outside of showers and baths."
-    "Those, for some reason, she absolutely adores."
-    "Between that the obvious and it's no wonder she's anxious."
-    mc "Well I suppose we'd better head back then."
-    f "Yeah..."
-    show fia c_puppy with dissolve
-    "And there it is. Her infamous \"kicked puppy\" look."
-    "I know she's not doing it on purpose but it still makes me feel awful."
-    "I should probably try and get her mind off of it."
-
-    #Removed dialogue choice. Just go to the next scene.
-    jump tease
-    
-    #We should never get here, but just in case...
-    return
-
-#Scene where the MC teases Fia for being anxious about the rain
-label tease:
-    "The quickest way to get her to perk up might be to rib her a little."
-    "A little tease there, a little sexual innuendo there..."
-    mc "Well look on the bright side: At least now you have an excuse to pounce me when we get back."
-    show fia c_neutral with dissolve
-    f "Huh?"
-    "I give her a wink."
-    mc "I may have been out cold but I could still tell you were groping at my..."
-    show fia c_pout with dissolve
-    f "I did no such thing!"
-    "And yet your tail is wagging. Seems I guessed right."
-    mc "Uh huh. It's kinda hard to miss your paws, Fia."
-    "She lets out a little whine in response. Curse her adorableness."
-    f "Okay fine. I maybe sorta thought about waking you up in a different way."
-    mc "Oh?"
+    f "Well if you'd come with me more often, maybe you'd have better endurance."
+    "She says it with such a straight face that I don't even catch the double entendre at first."
+    "Once she winks, though, I quickly realize what she means."
+    mc "You know how it is. The spirit is willing..."
+    show fia c_smile with dissolve
+    f "Are you going to be alright though? I don't mind waiting a little longer."
     show fia c_fire with dissolve
+    f "Nor would I mind carrying you~"
+    "The dull ache in my feet makes her offer sorely tempting."
+    "But I can't wimp out now. Not after doing so well!"
+    mc "I'll be alright. But it's your turn to carry your camera bag."
+    "She takes the bag without complaint. Though she does put on a mock pout in the process."
+    show fia c_pout with dissolve
+    f "It's not THAT heavy!"
+    "You weren't the one carrying it the last five miles..."
+    mc "Maybe. But it's still a good thing I have you around to do all the heavy lifting."
+    show fia c_smile with dissolve
+    f "At this rate I'm going to be the one wearing the pants in this relationship~"
+    "You kind of already do."
+    show fia c_fire with dissolve
+    f "Though I think we both know my feelings about pants~"
+    "The way her gaze drifts down and lingers makes me realize she's not just flirting with me."
+    "I follow her stare, only to realize my fly is suspiciously down."
+    mc "Huh."
+    "I quickly rectify the displaced zipper."
+    mc "I thought I dreamt that part."
+    f "Nope~"
+    f "I was THIS close to waking you up in a different way."
+    mc "Oh?"
     f "It involved forcing you up against the tree, tearing your clothes off, and..."
     "I wave her off before she gets too fired up."
-    mc "Alright alright, I get it. Let's getting walking before you decide to change your mind and we get caught in the rain."
+    mc "Alright alright, I get it. Let's getting walking again before you decide to change your mind."
     "With that I start walking down the road back towards our apartment. Fia's quick to catch up."
     show fia c_smile with dissolve
     f "That's why you were playing possum, weren't you?"
-    "It's my turn to be confused."
+    "I turn to look at her, confused."
     mc "Eh?"
     f "You were secretly hoping I would wake you up like that~"
     "I let out a playful sigh. I walked right into that one."
     mc "You know how much I love it when you do."
     show fia c_fire with dissolve
     f "I'll have to do it more often then~"
+    "I don't know whether to be happy or sad for my pelvis."
     mc "I'm going to have to start wearing a chastity belt to bed, aren't I?"
     mc "Otherwise I'll never get any sleep."
     show fia c_smile with dissolve
     f "It wouldn't last five seconds."
-    "She winks at me when I turn to raise an eyebrow at her."
+    "This time when she winks, she smiles sweetly."
     "It's her way of letting me know that if she's pushing too hard I can tell her."
-    "But honestly?"
-    "I don't mind in the slightest."
-    "I'm just happy she's not dwelling on the storm gathering behind us."
+    "She's not, but I can't afford to let her get me worked up out here."
+    "Especially since the afternoon forecast DID call for some form of rain."
+    "Oh... well there's an idea."
+    "Fia hates getting wet outside of showers and baths."
+    "Those, for some reason, she absolutely adores."
+    mc "Hey, Fia."
+    show fia c_neutral with dissolve
+    f "Hm?"
+    mc "You do remember that we're due for rain later, right?"
+    f "Yeah... what about it?"
+    mc "Well if we keep flirting like this, we'll never make it back to the apartment in time."
+    mc "I don't know about you, but I can't walk very well on three legs."
+    "Fia takes it in stride."
+    "I know she'd pounce me if she really wanted to, but it seems she's content with waiting."
+    show fia c_pout with dissolve
+    "...Mostly."
+    f "It's not like you're a tripod, you know."
+    f "I can easily make your \"third leg\" more managable if you'd let me."
+    mc "You know how I am. The thought of being watched terrifies me."
+    show fia c_neutral with dissolve
+    f "It just occurred to me that we've never talked about that sort of thing before."
+    mc "Huh?"
+    "She re-slings her camera bag and walks out in front of me. Once there she spins around and walks backwards."
+    f "Like... I know you're not into the whole exhibitionism thing. But terrified? That's new."
+    f "I thought it was just that it didn't do anything for you."
+    "I scratch the back of my head in thought."
+    mc "I think it's way too much risk for the reward the thrill brings you."
+    mc "Not that the thrill is at all bad, just that there are consequences if you get caught."
+    "Fia giggles at that."
+    show fia c_smile with dissolve 
+    f "I suppose that's true."
+    f "Well... kinda."
+    f "In this day in age that sort of thing is becoming less and less taboo, you know?"
+    "I shrug noncommittally."
+    mc "Maybe. But I'd still prefer not to be judged. By accident or otherwise."
+    f "Awww~ Does this means I have to stop secretly rating your performance?"
+    "Another sigh escapes my lips. This is going to be a long walk home."
     
-    #Move to the Wet T-Shirt Scene
+    #Onto the next scene!
     jump wetshirt
+    
+    #We should never get here, but just in case...
+    return
 
 #The obligatory wet t-shirt scene
 label wetshirt:
+    hide fia with dissolve
+    window show
+    mc_nvl "We spend the next ten or so minutes walking in silence."
+    mc_nvl "Along the way, Fia returns to walking at my side."
+    mc_nvl "Much closer than before, I might add."
+    mc_nvl "So close, in fact, that I can't help feel the occasional tingle as her fur brushes against my skin."
+    mc_nvl "I have to visibly concentrate on keeping a straight face. Which just makes Fia all the more radiant."
+    mc_nvl "Sadly, it seems my stoic front is short lived..."
+    window hide
+    nvl clear
+    
     #Thunder sound here?
     with vpunch
-    "Speaking of..."
     "A crack of thunder peels across the land, stopping me from replying."
-    "Seconds later the windfront reaches us, carrying with it the first drops of rain."
-    "It seems the storm was closer than either of us thought."
-    show fia c_pout with dissolve
+    "Seconds later a windfront reaches us, carrying with it the first drops of rain."
+    "It seems the forecasted storm was closer than either of us thought."
+    "That or we took far longer walking back than expected."
+    "...yeah it's probably the latter."
     f "Ugh. We're going to get soaking wet..."
-    mc "Probably. But then again, you're always wet around me."
-    "That earns me a playful punch on the shoulder."
-    show fia c_smile with dissolve
-    f "Come on, we'd better hurry."
+    show fia c_pout with dissolve
+    "I look to my right to see a rather disgruntled-looking Hellhound."
+    mc "Told you we should have brought along an umbrella."
+    f "It'dve just been something else to carry though!"
+    mc "Maybe. We might have been able to stuff it in your bag there."
+    mc "You have so much gear in there you could probably take pictures of the surface of Mars."
+    show fia c_neutral with dissolve
+    f "Well with the right lenses..."
+    "She mulls this over, a thoughtful expression on her face."
+    f "Best I can get you is the Moon."
+    "I'm honestly impressed at that."
+    "Though the rain hits us proper before I can respond."
     
-    #Need to make a rain overlay of sorts
-    scene bg outside_rain with dissolve
-    show rain
-    "..."
-    "It's times like this that make me consider always carrying an umbrella around."
-    "Even my underwear is drenched. And not in the good way."
-    "We're still a good mile and a half away from our apartment too."
-    
+    scene bg outside_rain
+    show rain 
+    with dissolve
+    window show
+    mc_nvl "The next few minutes are a whirl of us sputtering and trying to make a makeshift covering."
+    mc_nvl "It doesn't go so well."
+    mc_nvl "Even my underwear ends up drenched. And not in the good way."
+    mc_nvl "As we're still a good mile and a half away from our apartment, we're resigned to walking home drenched."
+    window hide
+    nvl clear
     show fia cw_pout with dissolve
     "Not that I mind in the slightest."
     "Fia, on the other hand..."
     f "Grrrrr..."
     "I'm torn between wanting to laugh and to ogle her."
     "I know she doesn't mind the latter. Hell she encourages it normally."
-    "The former, though, I should at least address. Even if it earns me another love tap."
+    "The former, though, I should at least address."
     mc "You know, Fia..."
     f "What?"
     "She sounds absolutely dejected. I hope this works."
@@ -203,40 +294,49 @@ label wetshirt:
     show fia cw_smile with dissolve
     f "Not really. But it's a nice bonus, I guess?"
     mc "I'd say so."
-    f "Too bad the effect doesn't work so well on your clothes, though."
-    "I chuckle at that."
-    mc "First the groping, now this... I'm starting to wonder if I'm just a piece of meat to you."
-    "Again, it's all in good fun. And I make she knows for sure by winking."
-    "It seems to have the intended effect as wisps of flames begin to seep from the corners of her eyes."
-    "These aren't the flames of pure lust like from before, though."
-    "These are ones of passion and adoration."
+    f "Honestly, I just wanted to get that creek done before it was too late."
+    mc "The lighting or something again?"
+    show fia cw_neutral with dissolve
+    "She nods. As she does, little droplets trail from her head, only to be lost in the downpour."
+    f "Yeah. Starting next week the sun won't be at the right angle."
+    f "Plus, with all this rain, the water level would be too high."
+    mc "You've put a lot of thought into this, haven't you?"
+    "Another nod."
+    show fia cw_smile with dissolve
+    f "A lot of people just think it's about pointing your camera in the right direction at the right time."
+    f "But you also have to take into consideration the exposure length, aperture size, and so on."
+    f "And for every one good photo I take there's at least fifty or so that are awful."
+    "Even with the semi-blinding rain, I pick up on the fact she's got a new spring in her step."
+    "It's great seeing her like this. And I don't just mean the obvious."
+    "Seeing and hearing about something she's passionate about seems special, in a way."
+    mc "I guess I'm just surprised, since you don't actually ever submit the photographs themselves."
+    "It's true. She uses them exclusively as references for her painting and other art."
+    f "I like keeping things fresh in my mind."
+    f "That or it can be handy when I come back to something later and wonder what I was working towards."
+    f "Which... come to think of it..."
     show fia cw_fire with dissolve
-    f "Never. But even if you were a literal steak I'd love you all the same."
-    mc "Plus, if I were, you'd have more fun eating me."
-    "She stops, dead in her tracks. I follow suit shortly thereafter."
-    f "I don't think I'll ever get tired of devouring you, hun."
-    mc "And I you, dear."
-    "For a moment we just stare at each other in silence."
-    "We're both trying not to laugh at our sappiness."
-    "There's always so much sexual tension that sometimes we need moments like this for perspective."
-    "Luckily for me, Fia cracks first."
-    show fia cw_fire_smile with dissolve
-    f "Maybe I should get caught in the rain more often~"
-    "I can't resist reaching out and pulling her close."
-    #zoom in
-    "Both of our clothes makes a sort of squelching noise as the wet fabrics rub against each other."
+    "Uh oh. I know that look."
+    f "I seem to recall working on some wood earlier. Any thoughts?"
+    "Damn it Fia. I was doing so well..."
+    "Maybe if I play it cool, I'll buy myself some time."
+    mc "I..."
+    "Of course, as I open my mouth to speak, she steps right in front of me and stops."
+    "I all but slam into her as a result."
+    #zoom in?
+    "Both of our clothes make a sort of squelching noise as the wet fabrics rub against each other."
     "Even through the chilling rain, I can feel Fia's swelling body heat as she presses against me."
-    mc "I certainly wouldn't mind."
-    "We look into each others eyes. Then, at the same time, our lips meet in midair."
-    "It's a kiss of affection. Short, sweet, and just long enough to mean something."
-    "Though, for all it matters, we could remain like this for hours. Rain and all."
-    "Fia's the first to pull away."
+    "As I look into her eyes, she opens her mouth ever so slightly and tilts her head."
+    "..."
+    "Damn it I can't resist it any longer."
+    "I take her by the shoulders, then force our lips together."
+    "It's a kiss of lust and affection. Short, sweet, and just long enough to mean something."
+    "Enough to drive her wild and relent. Or so I hope."
+    "As it turns out, Fia's the first to pull away."
     #zoom out
-    show fia cw_fire with dissolve
     f "I hope you know what you've started~"
     "I let out a hearty laugh."
     mc "Of course I do. And I know you know I do because your hand wandered again."
-    "It's true. My fly seems to be suspiciously down."
+    "It's true. My fly seems to be suspiciously down once more."
     show fia cw_pout with dissolve
     f "Oh I am SO going to tear into you when we get home."
     "I wink at her and start walking again."
@@ -271,7 +371,6 @@ label apartment:
     "She turns deftly on her heels and starts leading the way to the bathroom."
     "All along the way she puts extra emphasis into her hip movements."
     "Even her tail gets into the seductive action: swishing side to side to accent her stride."
-    "...have I mentioned how lucky I am yet?"
     
     scene bg shower with fade
     
