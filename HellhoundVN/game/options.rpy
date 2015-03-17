@@ -145,7 +145,7 @@ init -1 python hide:
 
     ## The file containing the default font.
     # Mess with this later
-    style.default.font = "assets/SilverAgeLCBB.ttf"
+    style.default.font = "assets/playtime.ttf"
 
     ## The default size of text.
     style.default.size = 32
