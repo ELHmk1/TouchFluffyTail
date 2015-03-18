@@ -7,6 +7,7 @@ image bg outside = "assets/backgrounds/outside_bg.png"
 image bg outside_rain = im.MatrixColor("assets/backgrounds/outside_bg.png", im.matrix.tint(0.7, 0.7, 0.7))
 image bg shower = "assets/backgrounds/bathroom_bg.png"
 image bg apartment = Placeholder("bg")
+image bg bedroom = Placeholder("bg")
 image black = Solid((0, 0, 0, 255))
 image insert_cg1 = "assets/CGs/insert_cg1.png"
 
@@ -36,6 +37,7 @@ image fia cw_fire_smile = Placeholder("girl")
 image fia n_smile = "assets/sprites/fia_nude_smile.png"  
 image fia n_fire = Placeholder("girl")
 image fia n_neutral = Placeholder("girl")
+image fia n_pout = Placeholder("girl")
 image fia nw_smile = "assets/sprites/fia_nudewet_smile.png"
 image fia nw_fire = Placeholder("girl")
 image fia nw_bite = Placeholder("girl")
@@ -115,6 +117,7 @@ init python:
     
     #Messes with the default dissolve
     define.move_transitions("dissolve", 0.4)
+        
 
 #########################################
 # The acutal game starts here.
@@ -279,7 +282,7 @@ label wetshirt:
     window show
     mc_nvl "The next few minutes are a whirl of us sputtering and trying to make a makeshift covering."
     mc_nvl "It doesn't go so well."
-    mc_nvl "Even my underwear ends up drenched. And not in the good way."
+    mc_nvl "Even my underwear ends up soaked. And not in the good way."
     mc_nvl "As we're still a good mile and a half away from our apartment, we're resigned to walking home drenched."
     window hide
     nvl clear
@@ -350,7 +353,7 @@ label wetshirt:
     #zoom in?
     #show fia cw_kiss with dissolve
     "Both of our clothes make a sort of squelching noise as the wet fabrics rub against each other."
-    "Even through the chilling rain, I can feel Fia's swelling body heat as she presses against me."
+    "Despite the chilling rain I can feel Fia's swelling body heat as she presses against me."
     "As I look into her eyes, she opens her mouth ever so slightly and tilts her head."
     "..."
     "Damn it I can't resist it any longer."
@@ -463,8 +466,8 @@ label apartment:
     f "Ah! Yes~"
     "Her claws, currently on my chest, dig into me as well. Not enough to be unpleasantly painful though."
     "I repeat the process once more for good measure."
-    "Though this time, it's enough to break Fia."
-    f "Hnn... I can't take it anymore~"
+    "This time it's enough to break Fia."
+    f "Hnn... I can't take it anymore..."
     "She whirls on the spot and throws herself against the glass door."
     "All the while she lifts up her tail to give me free access to both of her holes."
     f "You. In me. NOW."
@@ -477,32 +480,35 @@ label apartment:
 label shower_sex:
     scene insert_cg1 with fade
     pause
-    "The words are hardly out of her mouth before I'm already right behind her."
+    "The words are hardly out of her mouth before I move into place behind her."
     "Between the steam, running water, and her own juices, Fia's a sopping mess."
     "Which just makes sliding into her trivial."
     f "Mhn~!"
     "As her molten folds envelop me I feel them begin to grip and pull at my length."
-    "It's as if the fires of hell itself are driving themselves into a frenzy."
-    "By the time I've hilted myself my entire pelvic region is awash in ecstasy."
+    "It's as if the fires of hell itself are trying to burn the very essence of ecstasy into my flesh."
+    "By the time I've hilted myself my entire pelvic region is awash in delight."
     "But perhaps the most arousing thing for me is how Fia reacts."
-    "Her entire body tensed when I first entered, but now she feels like putty in my hands."
+    "Her entire body tensed when I first entered but now she feels like putty in my hands."
     "What was once her gasps is now actual pants."
     "Between that and the way her tail instinctively coils around my waist I'm left throbbing with desire inside of her."
     f "Don't move... just yet..."
     mc "You just came, didn't you?"
-    "Her interior clamps down around my base, preventing me from going anywhere."
+    "Her interior clamps down around my base, holding me in place and preventing me from going anywhere."
     "Not that I was planning on it."
     f "Yeah... I guess I was really worked up, huh?"
     "She turns and gives me an embarrassed smile."
     "It's rare that she lets me take the lead like this, so seeing that just makes it all the more sensual."
     "I find myself beaming back at her, both proud and somehow more turned on than when we started."
-    mc "I guess it's a good thing we're not going to be stopping, huh?"
-    "With a waving motion, starting at my tip, her passage begins to massage my shaft."
-    f "Mhm~"
-    "Finally her hold on my base relaxes, allowing me to thrust in and out of her."
-    "I start slow, basing my pace on the subtle way her silken tail pulls at me with each cycle."
+    mc "For what it's worth, I already feel like I could go at any second too."
+    f "Well don't hold back. Take it slow if you must but I WILL be draining those balls."
+    f "One way or another."
+    "As if to punctuate her statement, waves of pressure begin cascading down from my tip."
+    "Her clamp on me relaxes at the same time."
+    "I start slow, basing my thrusting pace on the subtle way her silken tail pulls at me with each cycle."
     "The wet fur feels luxurious, like a silken glove tickling my skin."
-    "The longer I go on, the more I notice the fact the water coming out of the shower head has stopped flowing."
+    "With each completed motion its pulls grow hungrier and hungrier in nature."
+    "Soon I'm not so sure whether it's my hips or her tail doing the work."
+    "The longer we go on, the more I notice the fact the water coming out of the shower head has stopped flowing."
     "Or, rather, it seems to be instantly evaporating the second it touches Fia, so great is her body heat."
     "The process brings with it the distinct smell of baked apples thanks to the soap she'd picked out."
     "All that combined with the way her folds keep drawing me back in with teasing licks of flame quickly bring me to the edge."
@@ -512,65 +518,140 @@ label shower_sex:
     "As I thrust my hips forward she bucks back into them."
     "There again she locks me in place and assaults my length with a barrage of burning nips."
     #White flash?
-    "So powerful is my orgasm that my entire body starts twitching involuntarily."
+    "So powerful is my release that my entire body starts twitching involuntarily."
     "All the while I can feel my seed flow into her, mixing with her juices and somehow igniting them."
-    "I couldn't tell you how long she kept me in that state."
-    "Her biology makes it so she can all but chain my climaxes together if she wants."
-    "As such, it's only when I start to fall backwards that she relents and catches me."
-    "Eyes full of love, lust, and concern, she holds me in place with her tail and arms and waits."
+    "The inferno just serves to lengthen and intensify my orgasm, making it feel like it could go on forever."
+    "And it very well could. If she wanted to she could all but chain my orgasms together with that exotic biology of hers."
+    "I couldn't tell you exactly how long she kept me in that state." 
+    "It's only when I start to fall backwards, weak at the knees, that she relents."
+    "Eyes full of love, lust, and concern, she holds me in place and waits."
     f "Breathe, Mike. That's a good boy."
-    "My own pants now mixing with hers, it takes me a moment to collect myself."
+    "It takes me a moment to collect myself."
+    "All the while my own pants mix with hers."
     mc "That... That was only the beginning, wasn't it?"
     "Her grin increases and she gives me a squeeze down below."
-    "Between that and the swirling inferno surrounding my length I quickly recover."
-    f "You guessed it! I won't take as much, this time."
-    "As before she lets me go. We quickly fall back into the pattern of me being in the lead but not actually being in the lead."
-    "The longer we go, the more two things start to build up."
-    "The first is the sweat on our skins. By now we might as well have been fucking in a sauna."
-    "The second is the mixture of liquids that's seeping out of Fia's slot between movements."
-    "Already it's begun trailing down her inner thighs to the floor below."
+    "The swirling hellfire reignites about my length, allowing me to I quickly recover."
+    f "Of course it was. But I won't take as much this time."
+    mc "How considerate of you."
+    "We both snicker at that before returning to the business at hand."
+    "After she lets me go we quickly fall back into a pattern."
+    "I start off in the lead but shortly end up being led by her."
+    "The illusion of control, perhaps, but a welcome one."
+    "Regardless, two things start to build up as we continue."
+    "The first is the sweat on our skins."
+    "Between the heat and steam we might as well be fucking in a sauna."
+    "The second is a mixture of liquids seeping out of Fia's slot."
+    "Already it's begun dribbling down her inner thighs to the floor below."
+    "The effect is further amplified with each stroke and with each orgasm she wrings out of me."
     f "So much... Ah... For the shower..."
     mc "I wouldn't... worry..."
     "Somehow our pace increases. By now I'm all but jackhammering her against the door."
     "It's hard to say which is louder: her moans and whines, the reverberating glass, or my own grunts."
-    "As such, we only just catch ourselves in time when the glass begins to crack."
+    "We only just catch ourselves in time when the glass begins to crack."
     f "Damn... Damn it... We just fixed that!"
     mc "Good thing we keep spares around, huh?"
     f "Yeah..."
+    "We come to a complete stop as a result."
+    "Though Fia slyly teases one more spasm from me before she lets me go."
     
     scene bg shower with fade
     #Did we want to do cum versions?
     show fia nw_fire with dissolve
-    "I slide out of her in entirety and collapse against the opposite wall." 
-    "With a giggle, Fia reaches behind her and scrapes some of the cum mixture up in a claw."
-    "She brings it to her eyes then makes a show of using her tongue to clean the digit."
+    "As soon as I stop convulsing inside of her I slide out, take a few steps back, and collapse against the opposite wall." 
+    "With a giggle, Fia reaches between her legs and scrapes some of the cum mixture up in a claw."
+    "She brings it to her eyes and considers it for a moment."
+    "Then she makes a show of using her tongue to clean the digit."
     f "Mmmmmm~ The pineapple diet's DEFINITELY working."
-    mc "That's... goood..."
+    mc "That's... good..."
     "To say I'm winded would be an understatement."
     "My entire body feels like it just ran a marathon through the depths of hell itself."
     "I know she wants to keep going though."
+    "Match a Hellhound's stamina isn't something I know I can do, but I feel like I should try."
+    "Not out of some vain need to prove myself. More that I just don't want to let Fia down."
     mc "I just need a minute here. Yeah... a minute..."
-    "The torrent of flames emanating from Fia's eyes die down to about half of the original size."
+    "The torrent of flames emanating from Fia's eyes die down to about half of their original size."
     show fia nw_smile with dissolve
-    f "You need more than that, I know. But it's cute that you're trying."
-    "She joins me on the floor, sitting next to me as the shower returns to normal."
+    f "You need more than that. I know. But it's cute that you're trying."
+    "Damn her keen senses."
+    "She joins me on the floor and stays next to me as the shower returns to normal."
     f "Take all the time you need, Mike."
     mc "Thanks."
-    "From there she proceeds to actually wash the pair of us."
-    "It's not nearly as heated as before though. If anything her touch is gentle and tender."
+    "Once our breathing returns to something semi-normal she proceeds to actually wash the pair of us."
+    "It's not nearly as heated as before. If anything her touch is gentle and tender."
     "The only betrayal of her arousal is how she lingers on my pelvic region."
     "That she doesn't finish until she's given me several teasing pumps with her paws."
     f "And stand... careful now..."
-    "She dunks us under the stream of liquid coming from the shower head. By now it's just losing its warmth."
+    "She dunks us under the stream of liquid coming from the shower head. By now it's just started to lose its warmth."
     "Once all the traces of soap have disappeared from our bodies she turns off the water and begins drying us off."
     "By which, of course, I mean her body heat momentarily soars and leaves us with but a few droplets here and there."
+    "Again the heavy scent of apples fills the room, much to my delight."
     show fia n_smile with dissolve
     f "There we are. Come on. Let's go lay down."
     jump post_shower
 
 #After the shower scene
 label post_shower:
-    scene bg apartment with fade
+    scene bg bedroom with fade
     show fia n_smile with dissolve
-    f "The sooner you write this the sooner I can love you tenderly in the bedroom~"
+    "It's a quick walk from the bathroom to the bedroom."
+    "Once there, we both fall onto the sheets and curl up facing one another."
+    f "You okay?"
+    "She squeezes my shoulder lovingly."
+    mc "Fine. Just winded. Really winded."
+    f "We really are going to have to work on your endurance."
+    f "But for now?"
+    "Suddenly her lips press against mine for a quick peck."
+    f "I'm more than content with that."
+    "It takes me a moment to find the right words in reply."
+    mc "That means a lot to me. It really does."
+    mc "You remember how nervous I was when we first started dating?"
+    show fia n_fire with dissolve
+    f "Of course. That's why I was so relentless in pursuing you."
+    f "It was absolutely adorable. And you still are."
+    "I flash her a grin at that."
+    mc "Well, part of that was because I knew I wouldn't measure up. Or thought I couldn't, anyways."
+    show fia n_smile with dissolve
+    f "Mike, it's not about satisfying my deep-seated desires to fuck you senseless."
+    mc "I know. That's the point I'm trying to make."
+    f "Ahh..."
+    mc "What I'm trying to say is... Thanks."
+    mc "For not pressuring me or going too far."
+    mc "You make me feel safe and comfortable. I just hope I do the same for you."
+    "A pauses follows my poorly constructed outcry of emotions."
+    "Then Fia's tail begins thumping heavily against the mattress behind her."
+    f "Of course you do."
+    f "So long as you're happy, I'm happy."
+    f "It's what I like about you. And us really."
+    f "We're so focused on the other's pleasure that we often forget our own."
+    show fia n_neutral with dissolve
+    f "But in a good way. It's selfless."
+    "This time I'm the one who kisses her."
+    mc "I'll try to remember that the next time you almost suffocate me while riding my face."
+    show fia n_pout with dissolve
+    f "That only happened once!"
+    f "And I said I was sorry!"
+    "I chortle at that as I flip over and press myself against her."
+    "Now the little spoon, her arms instinctively wrap around me and pull me even closer."
+    "As she does another peel of thunder and lightning erupts outside."
+    
+    show fia n_neutral with dissolve
+    f "Jeez. It's still coming down pretty hard out there, isn't it?"
+    mc "Seems so. Good thing we didn't have anything planned this weekend."
+    "I hear a sigh. Then Fia buries her face into my nape."
+    f "I really do need to paint at some point. And we both have exams in a couple of weeks to study for."
+    f "But I'm sorely tempted just to ignore all that."
+    mc "I can't imagine what for."
+    "She squeezes the wind out of me. Just for a moment."
+    f "Honestly it's a wonder I get anything productive done around you."
+    mc "I could say the same, really."
+    "I feel myself being turned over. Right into her waiting lips."
+    "The waltz our tongues dance is a slow one. A four beat step of love."
+    f "Now..."
+    show fia n_smile with dissolve
+    f "Don't think you're entirely off the hook."
+    mc "Huh?"
+    "She spins me back over and then lets one of her paws drift downwards to rest on my groin."
+    f "Just know that I plan on a little breakfast in bed tomorrow morning..."
+    scene bg black with circirisin
+    #For now that's the end. If we expand to day 2 then we'll jump here
     return
