@@ -71,11 +71,11 @@ init:
     
     image rain:
         "assets/backgrounds/rain.png"
-        0.2
+        0.05
         "assets/backgrounds/rain2.png"
-        0.2
+        0.05
         "assets/backgrounds/rain3.png"
-        0.2
+        0.05
         repeat
         
     image ctc_blink:
@@ -116,7 +116,7 @@ init python:
     config.window_show_transition = dissolve
     
     #Messes with the default dissolve
-    define.move_transitions("dissolve", 0.4)
+    define.move_transitions("dissolve", 0.2)
         
 
 #########################################
