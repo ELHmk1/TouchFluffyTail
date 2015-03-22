@@ -77,13 +77,21 @@ init:
         "assets/backgrounds/rain3.png"
         0.05
         repeat
-        
+    
+    #Click to continue indicator
     image ctc_blink:
         "assets/sprites/ctc01.png"
         linear 0.5 alpha 1.0
         "assets/sprites/ctc03.png"
         linear 0.5 alpha 1.0
         repeat
+    
+    #Defines the Vignette toggle for later 
+    if persistent.vignette is None:
+        $ persistent.vignette = True
+    
+    #Defines the flash effect for use during climaxes
+    $ flash = Fade(.25, 0, .75, color="#fff")
 
 init python:
     #NVL stuff
@@ -105,10 +113,9 @@ init python:
 
     # How far from the left menu choices should be indented.
     style.nvl_menu_choice_button.left_margin = 20
-
     
     #style.nvl_window.background = "nvl_window.png"
-    style.nvl_window.xpadding = 55
+    style.nvl_window.xpadding = 215
     style.nvl_window.ypadding = 305
 
     config.empty_window = nvl_show_core
@@ -117,7 +124,7 @@ init python:
     
     #Messes with the default dissolve
     define.move_transitions("dissolve", 0.2)
-        
+    
 
 #########################################
 # The acutal game starts here.
@@ -247,15 +254,12 @@ label start:
 #The obligatory wet t-shirt scene
 label wetshirt:
     hide fia
-    window show
-    mc_nvl "We spend the next ten or so minutes walking in silence."
-    mc_nvl "Along the way, Fia returns to walking at my side."
-    mc_nvl "Much closer than before I might add."
-    mc_nvl "So close, in fact, that I can't help feel the occasional tingle as her fur brushes against my skin."
-    mc_nvl "I have to visibly concentrate on keeping a straight face. Which just makes Fia all the more radiant."
-    mc_nvl "Sadly, it seems my stoic front is short lived..."
-    window hide
-    nvl clear
+    "We spend the next ten or so minutes walking in silence."
+    "Along the way, Fia returns to walking at my side."
+    "Much closer than before I might add."
+    "So close, in fact, that I can't help feel the occasional tingle as her fur brushes against my skin."
+    "I have to visibly concentrate on keeping a straight face. Which just makes Fia all the more radiant."
+    "Sadly, it seems my stoic front is going to be rather short lived..."
     
     #Thunder sound here?
     with vpunch
@@ -281,13 +285,10 @@ label wetshirt:
     scene bg outside_rain
     show rain 
     with dissolve
-    window show
-    mc_nvl "The next few minutes are a whirl of us sputtering and trying to make a makeshift covering."
-    mc_nvl "It doesn't go so well."
-    mc_nvl "Even my underwear ends up soaked. And not in the good way."
-    mc_nvl "As we're still a good mile and a half away from our apartment, we're resigned to walking home drenched."
-    window hide
-    nvl clear
+    "The next few minutes are a whirl of us sputtering and trying to make a makeshift covering."
+    "It doesn't go so well."
+    "Even my underwear ends up soaked. And not in the good way."
+    "As we're still a good mile and a half away from our apartment, we're resigned to walking home drenched."
     show fia cw_pout with dissolve
     "Not that I mind in the slightest."
     "Fia, on the other hand..."
@@ -448,15 +449,12 @@ label apartment:
     "She giggles and slowly stands up right with a bottle in hand."
     f "We don't have cherry. But let's just go with apple."
     show fia nws_smile with dissolve
-    window show
-    mc_nvl "Somehow we manage to get halfway through rubbing each other down."
-    mc_nvl "Which, given the circumstances, seems like a miniature miracle."
-    mc_nvl "Each new inch I slide my hands over causes her ashen skin to erupt in goosebumps of pleasure."
-    mc_nvl "It's not before she starts to pry at my own skin and groan in delight."
-    mc_nvl "It's become a game: who will snap first?"
-    mc_nvl "That answer's short in coming when we start on each other's chests."
-    window hide
-    nvl clear
+    "Somehow we manage to get halfway through rubbing each other down."
+    "Which, given the circumstances, seems like a miniature miracle."
+    "Each new inch I slide my hands over causes her ashen skin to erupt in goosebumps of pleasure."
+    "It's not before she starts to pry at my own skin and groan in delight."
+    "It's become a game: who will snap first?"
+    "That answer's short in coming when we start on each other's chests."
     f "Mhn~"
     f "That's it. Rub it in nice and slow~"
     "Dutifully I continue my work. Starting with the undersides of her breasts."
@@ -519,7 +517,7 @@ label shower_sex:
     "Her pleading is all it takes for me to topple over the knife's edge."
     "As I thrust my hips forward she bucks back into them."
     "There again she locks me in place and assaults my length with a barrage of burning nips."
-    #White flash?
+    #White flash? (use 'with flash')
     "So powerful is my release that my entire body starts twitching involuntarily."
     "I can feel my seed flow into her, mixing with her juices and somehow igniting them."
     "The inferno drags my orgasm out, each rapturous moment echoing throughout my body with explosive intensity that makes my toes curl."

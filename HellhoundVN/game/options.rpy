@@ -23,11 +23,11 @@ init -1 python hide:
     ## This controls the title of the window, when Ren'Py is
     ## running in a window.
 
-    config.window_title = u"Screwing the Pooch - DEMO"
+    config.window_title = u"Hellhound VN - DEMO"
 
     # These control the name and version of the game, that are reported
     # with tracebacks and other debugging logs.
-    config.name = "Screwing the Pooch"
+    config.name = "Hellhound VN"
     config.version = "0.1b"
 
     #########################################
@@ -286,6 +286,7 @@ init -1 python hide:
     #########################################
     ## More customizations can go here.
     
+    # Dialogue Window Tweaks
     style.say_who_window.xalign = 0.0
     style.say_who_window.yalign = 1.0
     style.say_who_window.left_padding = 15
@@ -301,3 +302,17 @@ init -1 python hide:
     style.say_label.size = 36
     style.say_label.text_align = 0.5
     style.say_label.xalign = 0.5
+    
+    #style.window.background = Image("assets/gui/dialogue_box.png")
+    
+    # Vignette effect
+    
+    # This allows for the effect to be toggled
+    def vignette_overlay():
+        if persistent.vignette:
+            ui.image("assets/backgrounds/vignette.png")
+    
+    #We have to move the text layer up now too
+    config.layers = [ 'master', 'transient', 'screens', 'overlay', 'text' ]
+    config.say_layer="text"
+    config.overlay_functions.append(vignette_overlay)
