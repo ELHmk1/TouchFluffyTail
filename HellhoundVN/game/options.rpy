@@ -23,11 +23,11 @@ init -1 python hide:
     ## This controls the title of the window, when Ren'Py is
     ## running in a window.
 
-    config.window_title = u"Hellhound VN - DEMO"
+    config.window_title = u"Hellhound VN - TEASER"
 
     # These control the name and version of the game, that are reported
     # with tracebacks and other debugging logs.
-    config.name = "Hellhound VN"
+    config.name = "Hellhound TEASER"
     config.version = "0.1b"
 
     #########################################
@@ -313,6 +313,6 @@ init -1 python hide:
             ui.image("assets/backgrounds/vignette.png")
     
     #We have to move the text layer up now too
-    config.layers = [ 'master', 'transient', 'screens', 'overlay', 'text' ]
+    config.layers = ['master', 'overlay', 'text', 'transient', 'screens', ]
     config.say_layer="text"
     config.overlay_functions.append(vignette_overlay)

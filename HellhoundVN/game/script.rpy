@@ -131,20 +131,17 @@ init python:
 label start:
     #Start the VN with the MC resting
     scene black with fade
-    centered "Keep in mind this is a demo."
+    centered "Keep in mind this is a teaser."
     centered "Names, sprites, etc. may change in the finished product."
-    window show
-    mc_nvl "..."
-    mc_nvl "It's funny how quickly one loses track of time when you're sleeping under the afternoon sun."
-    mc_nvl "Thirty minutes, an hour, three hours... I honestly can't say how long I've been here."
-    mc_nvl "Not that that bothers me."
-    mc_nvl "After all, Fia and I just finished a rather long hike."
-    mc_nvl "She wanted to get a certain snapshot for her work, something about the lighting."
-    mc_nvl "Naturally I went with her."
-    mc_nvl "Some six hours later and we'd only just made it back to the outskirts of roads more familiar."
-    mc_nvl "She might be able to go that long without rest, but not me."
-    window hide
-    nvl clear
+    "..."
+    "It's funny how quickly one loses track of time when you're sleeping under the afternoon sun."
+    "Thirty minutes, an hour, three hours... I honestly can't say how long I've been here."
+    "Not that that bothers me."
+    "After all, Fia and I just finished a rather long hike."
+    "She wanted to get a certain snapshot for her work, something about the lighting."
+    "Naturally I went with her."
+    "Some six hours later and we'd only just made it back to the outskirts of roads more familiar."
+    "She might be able to go that long without rest, but not me."
     un "Mike~"
     "Please no."
     un "Mike."
@@ -627,10 +624,10 @@ label post_shower:
     f "Don't think you're entirely off the hook."
     mc "Huh?"
     "She spins me back over and then lets one of her paws drift downwards."
-    f "Just know that I plan on a little breakfast in bed tomorrow morning~"
+    f "I plan on a little breakfast in bed tomorrow morning~"
     "Oh boy..."
     scene bg black with circirisin
     
     #For now that's the end. If we expand to day 2 then we'll jump here
-    centered "End of Demo"
+    jump credits
     return

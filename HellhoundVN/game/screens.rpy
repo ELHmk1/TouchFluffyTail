@@ -437,7 +437,14 @@ screen preferences():
                     textbutton _("Test"):
                         action Play("sound", config.sample_sound)
                         style "soundtest_button"
-
+            frame:
+                style_group "pref"
+                has vbox
+                
+                label _("Vignette Effect")
+                textbutton _("Enabled") action SetField(persistent, "vignette", True)
+                textbutton _("Disabled") action SetField(persistent, "vignette", False)
+                
             if config.has_voice:
                 frame:
                     style_group "pref"

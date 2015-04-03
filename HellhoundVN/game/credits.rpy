@@ -17,7 +17,7 @@ init python:
             credits_s += "\n{size=40}" + c[0] + "\n"
         credits_s += "{size=60}" + c[1] + "\n"
         c1=c[0]
-    credits_s += "\n{size=40}Engine\n{size=60}Ren'py\n6.18.3.761"
+    credits_s += "\n{size=40}Engine\n{size=60}Ren'py\n6.99.0.303"
     
 init:
     image black = Placeholder("bg")
