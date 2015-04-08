@@ -5,4 +5,6 @@ HellhoundVN/traceback.txt
 HellhoundVN/game/saves/*
 HellhoundVN/tmp/*
 HellhoundVN/game/bytecode*
+HellhoundVN/game/bytecode.rpyb
+HellhoundVN/tmp/navigation.json
 Violating Hero/*
