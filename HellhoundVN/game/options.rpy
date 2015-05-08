@@ -275,6 +275,17 @@ init -1 python hide:
     ## Should we start in fullscreen mode?
 
     config.default_fullscreen = False
+    
+    config.enter_transition = dissolve
+    config.exit_transition = dissolve
+    config.intra_transition = dissolve
+    config.main_game_transition = dissolve
+    config.game_main_transition = dissolve
+    config.end_splash_transition = dissolve
+    config.end_game_transition = dissolve
+    config.after_load_transition = dissolve
+    config.window_show_transition = dissolve
+    config.window_hide_transition = dissolve
 
     ## The default text speed in characters per second. 0 is infinite.
 
