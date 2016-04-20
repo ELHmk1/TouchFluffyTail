@@ -1,146 +1,4 @@
-﻿# Main script of the game
-# Reference http://renpyhandbook.tumblr.com/code-tutorials as needed
-
-#########################################
-# Defines backgrounds we'll use
-image bg apartment = Placeholder("bg")
-image bg bedroom = Placeholder("bg")
-image black = Solid((0, 0, 0, 255))
-image insert_cg1 = "images/CGs/insert_cg1.png"
-
-#########################################
-# Defines sprites we'll use
-#The c_ prefix denotes Fia's Hotpants Outfit
-#The s_ prefix denotes Fia's Sweater Outfit
-#The n_ prefix denotes Fia in the nude
-#A 'w' in the prefix denotes a wet version
-#A 's' in the prefix denotes soap (Nude only, implies 'w')
-#The _u suffix denotes the fact Fia's tail is raised (Default on Fire/Nude)
-
-
-image fia neutral = DynamicDisplayable(draw_clothing, character=fia, art_path="images/sprites/fia/", eyes="neutral", brows="neutral", mouth="neutral", ears="up", tail="down", blush="", flames=False)
-image fia worried = DynamicDisplayable(draw_clothing, character=fia, art_path="images/sprites/fia/", eyes="neutral", brows="middleup", mouth="neutral", ears="up", tail="down", blush="", flames=False)
-image fia smile = DynamicDisplayable(draw_clothing, character=fia, art_path="images/sprites/fia/", eyes="squint", brows="raised", mouth="smile", ears="up", tail="up", blush="light", flames=False)
-image fia pout = DynamicDisplayable(draw_clothing, character=fia, art_path="images/sprites/fia/", eyes="squint", brows="middleup", mouth="pout", ears="down", tail="down", blush="light", flames=False)
-image fia grin fire = DynamicDisplayable(draw_clothing, character=fia, art_path="images/sprites/fia/", eyes="squint2", brows="raised2", mouth="widegrin", ears="up", tail="up", blush="strong", flames=True)
-image fia smile fire = DynamicDisplayable(draw_clothing, character=fia, art_path="images/sprites/fia/", eyes="squint2", brows="raised2", mouth="smile", ears="up", tail="up", blush="strong", flames=True)
-image fia bite fire = DynamicDisplayable(draw_clothing, character=fia, art_path="images/sprites/fia/", eyes="halfopen", brows="raised", mouth="lipbite", ears="up", tail="up", blush="strong", flames=True)
-
-#########################################
-# Define the characters we'll use
-
-#Unknown
-define un = Character('???', what_prefix='"', what_suffix='"', show_two_window=True)
-
-#Fia
-define f = Character('Fia', color="#CC5252", image="fia", what_prefix='"', what_suffix='"', show_two_window=True)
-
-#The MC
-#As his inner thoughts will be handled by the narrator we need to add quotes
-define mc = Character("Mike", color="#F0FFFF", what_prefix='"', what_suffix='"', show_two_window=True)
-#NVL mode narrator
-define mc_nvl = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled")
-
-#########################################
-#Transitions, variables, and what not
-init:
-    define dis = Dissolve(0.2)
-
-    $ circirisout = ImageDissolve("images/backgrounds/circleiris.png", 1.5, 8)
-    $ circirisin = ImageDissolve("images/backgrounds/circleiris.png", 1.5, 8, reverse=True)
-
-    image rain:
-        "images/backgrounds/rain.png"
-        0.033334
-        "images/backgrounds/rain2.png"
-        0.033334
-        "images/backgrounds/rain3.png"
-        0.033334
-        "images/backgrounds/rain4.png"
-        0.033334
-        "images/backgrounds/rain5.png"
-        0.033334
-        "images/backgrounds/rain6.png"
-        0.033334
-
-        "images/backgrounds/rain4.png"
-        0.033334
-        "images/backgrounds/rain2.png"
-        0.033334
-        "images/backgrounds/rain.png"
-        0.033334
-        "images/backgrounds/rain4.png"
-        0.033334
-        "images/backgrounds/rain3.png"
-        0.033334
-        "images/backgrounds/rain6.png"
-        0.033334
-        repeat
-    
-    #Click to continue indicator
-    image ctc_blink:
-        "images/sprites/ctc01.png"
-        linear 0.5 alpha 1.0
-        "images/sprites/ctc03.png"
-        linear 0.5 alpha 1.0
-        repeat
-    
-    #Defines the Vignette toggle for later 
-    if persistent.vignette is None:
-        $ persistent.vignette = True
-    
-    #Defines the flash effect for use during climaxes
-    $ flash = Fade(.25, 0, .75, color="#fff")
-
-init python:
-    fia = Actor()
-
-    state = "dry"
-
-    shirt = Clothing("shirt", priority=10, wettable=True, barbie=True)
-    hotpants = Clothing("hotpants", priority=10, wettable=True)
-    sweater = Clothing("sweater", priority=10, wettable=True)
-
-    fia.wear(shirt)
-    fia.wear(hotpants)
-
-    #NVL stuff
-    menu = nvl_menu
-
-    # The color of a menu choice when it isn't hovered.
-    style.nvl_menu_choice.idle_color = "#ccccccff"
-
-    # The color of a menu choice when it is hovered.
-    style.nvl_menu_choice.hover_color = "#ffffffff"
-
-    # The color of the background of a menu choice, when it isn't
-    # hovered.
-    style.nvl_menu_choice_button.idle_background = "#00000000"
-
-    # The color of the background of a menu choice, when it is
-    # hovered.
-    style.nvl_menu_choice_button.hover_background = "#ff000044"
-
-    # How far from the left menu choices should be indented.
-    style.nvl_menu_choice_button.left_margin = 20
-    
-    #style.nvl_window.background = "nvl_window.png"
-    style.nvl_window.xpadding = 215
-    style.nvl_window.ypadding = 305
-
-    config.empty_window = nvl_show_core
-    config.window_hide_transition = dissolve
-    config.window_show_transition = dissolve
-    
-    #Messes with the default dissolve
-    #define.move_transitions("dissolve", 0.2)
-    
-
-#########################################
-# The acutal game starts here.
-label start:
-
-label intro:
+﻿label start:
     #Start the VN with the MC resting
     scene black with fade
     centered "Keep in mind this is a teaser."
@@ -160,9 +18,9 @@ label intro:
     "No. I don't want to get up."
     un "MIKE."
     "...no rest for the wicked, I suppose."
-    
+
     #Open his eyes
-    scene bg outside 
+    scene bg outside
     show fia pout
     with circirisout
     "As I open my eyes I'm greeted with the sight of my girlfriend looming over me."
@@ -245,7 +103,7 @@ label intro:
     mc "I think it's way too much risk for the reward the thrill brings you."
     mc "Not that the thrill is at all bad, just that there are consequences if you get caught."
     "Fia giggles at that."
-    show fia smile with dis 
+    show fia smile with dis
     f "I suppose that's true."
     f "Well... kinda."
     f "In this day in age that sort of thing is becoming less and less taboo, you know?"
@@ -253,10 +111,10 @@ label intro:
     mc "Maybe. But I'd still prefer not to be judged. By accident or otherwise."
     f "Awww~ Does this means I have to stop secretly rating your performance?"
     "Another sigh escapes my lips. This is going to be a long walk home."
-    
+
     #Onto the next scene!
     jump wetshirt
-    
+
     #We should never get here, but just in case...
     return
 
@@ -269,7 +127,7 @@ label wetshirt:
     "So close, in fact, that I can't help feel the occasional tingle as her fur brushes against my skin."
     "I have to visibly concentrate on keeping a straight face. Which just makes Fia all the more radiant."
     "Sadly, it seems my stoic front is going to be rather short lived..."
-    
+
     #Thunder sound here?
     with vpunch
     "A crack of thunder peels across the land."
@@ -290,7 +148,7 @@ label wetshirt:
     f "Best I can get you is the Moon."
     "I'm honestly impressed at that."
     "Though the rain hits us proper before I can respond."
-    
+
     show rain zorder 1 with Dissolve(2.0)
     "The next few minutes are a whirl of us sputtering and trying to make a makeshift covering."
     show bg outside rain with Dissolve(2.0)
@@ -299,7 +157,7 @@ label wetshirt:
     $ state = "dripping"
     show fia worried with dis
     "As we're still a good mile and a half away from our apartment, we're resigned to walking home drenched."
-    show fia pout with dis 
+    show fia pout with dis
     "Not that I mind in the slightest."
     "Fia, on the other hand..."
     f "Grrrrr..."
@@ -387,7 +245,7 @@ label wetshirt:
     "I don't quite catch all of it though."
     show fia smile with dis
     f "...so hard~"
-    
+
     jump apartment
 
 #MC & Fia enter the apartment. They quickly strip and hit the shower.
@@ -431,14 +289,16 @@ label apartment:
     "Each flick is sending beads of water splattering against the wall and me"
     "Either she doesn't notice or doesn't care. Perhaps I should follow suit and focus on what's important."
     "...Not that that's hard."
-    
-    scene bg shower with fade
+
+    scene bg bathroom with fade
     "Once we reach the bathroom Fia wastes no time."
+    show fia smile with dis
     "She hops into the glass enclosure and starts up the hot water."
     "Soon steam fills the room, and with it a welcome heat."
     $ state = "dripping"
-    #show steam
-    show fia smile with dis
+    show bg bathroom steamy with Dissolve(2.0)
+    show fia grin fire with dis
+    show steam with Dissolve(2.0)
     "The moisture also comes with a moan as the water washes over her."
     f "Ahhhhhh~ Much much better..."
     "After tossing her hair out of her eyes, she turns to beckon at me with a finger."
@@ -457,7 +317,7 @@ label apartment:
     "She's likely close to breaking. Evidenced when she bends over and purposely flaunts herself to me."
     f "Cinnamon or Apple scented?"
     "Don't stare at it."
-    "Don't stare..." 
+    "Don't stare..."
     "...and I'm looking at it."
     mc "Uh... cherry."
     "She giggles and slowly stands up right with a bottle in hand."
@@ -486,7 +346,7 @@ label apartment:
     "All the while she lifts up her tail to give me free access to both of her holes."
     f "You. In me. NOW."
     f "And don't you DARE stop until the water goes cold."
-    
+
     #Onto the actual sex scene!
     jump shower_sex
 
@@ -535,7 +395,7 @@ label shower_sex:
     "So powerful is my release that my entire body starts twitching involuntarily."
     "I can feel my seed flow into her, mixing with her juices and somehow igniting them."
     "The inferno drags my orgasm out, each rapturous moment echoing throughout my body with explosive intensity that makes my toes curl."
-    "I couldn't tell you exactly how long she kept me in that state." 
+    "I couldn't tell you exactly how long she kept me in that state."
     "It's only when I start to fall backwards, weak at the knees, that she relents."
     "Eyes full of love, lust, and concern, she holds me in place and waits."
     f "Breathe, Mike. That's a good boy."
@@ -563,11 +423,11 @@ label shower_sex:
     f "Yeah..."
     "We come to a complete stop as a result."
     "Though Fia slyly teases one more spasm from me before she lets me go."
-    
-    scene bg shower with fade
+
+    scene bg bathroom with fade
     #Did we want to do cum versions?
     show fia grin fire with dis
-    "As soon as I stop convulsing inside of her I slide out, take a few steps back, and collapse against the opposite wall." 
+    "As soon as I stop convulsing inside of her I slide out, take a few steps back, and collapse against the opposite wall."
     "With a giggle, Fia reaches between her legs and scrapes some of the cum mixture up in a claw."
     "She brings it to her eyes and considers it for a moment."
     "Then she makes a show of using her tongue to clean the digit."
@@ -625,7 +485,7 @@ label post_shower:
     "I flip over and snuggle against her."
     "Now the little spoon, her arms instinctively wrap around me and pull me even closer."
     "As she does another peel of thunder and lightning erupts outside."
-    
+
     show fia neutral with dis
     f "Jeez. It's still coming down pretty hard out there, isn't it?"
     mc "Seems so. Good thing we didn't have anything planned this weekend."
@@ -645,7 +505,7 @@ label post_shower:
     f "I plan on a little breakfast in bed tomorrow morning~"
     "Oh boy..."
     scene bg black with circirisin
-    
+
     #For now that's the end. If we expand to day 2 then we'll jump here
     jump credits
     return

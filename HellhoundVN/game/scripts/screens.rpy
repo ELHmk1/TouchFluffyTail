@@ -1,58 +1,31 @@
-﻿# This file is in the public domain. Feel free to modify it as a basis
-# for your own screens.
-
-# Note that many of these screens may be given additional arguments in the
-# future. The use of **kwargs in the parameter list ensures your code will
-# work in the future.
-
-##############################################################################
+﻿##############################################################################
 # Say
 #
 # Screen that's used to display adv-mode dialogue.
 # http://www.renpy.org/doc/html/screen_special.html#say
-screen say(who, what, side_image=None, two_window=False):
+screen say(who, what, side_image=None, two_window=True):
+    vbox:
+        style "say_two_window_vbox"
 
-    # Decide if we want to use the one-window or two-window variant.
-    if not two_window:
+        # if who:
+        #     window:
+        #         style "say_who_window"
+        #
+        #         text who:
+        #             id "who"
 
-        # The one window variant.
         window:
             id "window"
 
             has vbox:
                 style "say_vbox"
 
-            if who:
-                text who id "who"
-
             text what id "what"
-
-    else:
-
-        # The two window variant.
-        vbox:
-            style "say_two_window_vbox"
-
-            if who:
-                window:
-                    style "say_who_window"
-
-                    text who:
-                        id "who"
-
-            window:
-                id "window"
-
-                has vbox:
-                    style "say_vbox"
-
-                text what id "what"
-
-    # If there's a side image, display it above the text.
-    if side_image:
-        add side_image
-    else:
-        add SideImage() xalign 0.0 yalign 1.0
+    if who:
+        text who:
+            id "who"
+            yalign 0.93
+            xpos 30
 
     # Use the quick menu.
     use quick_menu
@@ -195,7 +168,7 @@ screen main_menu():
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Preferences") action ShowMenu("preferences")
         textbutton _("Credits") action Start("credits")
-        textbutton _("Help") action Help()
+        #textbutton _("Help") action Help()
         textbutton _("Quit") action Quit(confirm=False)
 
 init -2:
@@ -220,7 +193,7 @@ screen navigation():
 
     # The various buttons.
     frame:
-        style_group "gm_nav"
+        #style_group "gm_nav"
         xalign .98
         yalign .98
 
@@ -231,7 +204,7 @@ screen navigation():
         textbutton _("Save Game") action ShowMenu("save")
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Main Menu") action MainMenu()
-        textbutton _("Help") action Help()
+        #textbutton _("Help") action Help()
         textbutton _("Quit") action Quit()
 
 init -2:
@@ -255,38 +228,42 @@ init -2:
 screen file_picker():
 
     frame:
-        style "file_picker_frame"
+        #style "file_picker_frame"
+
+        xpadding 50 ypadding 50
+        xmargin 70 ymargin 70
+        xsize 0.7
 
         has vbox
 
         # The buttons at the top allow the user to pick a
         # page of files.
-        hbox:
-            style_group "file_picker_nav"
-
-            textbutton _("Previous"):
-                action FilePagePrevious()
-
-            textbutton _("Auto"):
-                action FilePage("auto")
-
-            textbutton _("Quick"):
-                action FilePage("quick")
-
-            for i in range(1, 9):
-                textbutton str(i):
-                    action FilePage(i)
-
-            textbutton _("Next"):
-                action FilePageNext()
+        # hbox:
+        #     style_group "file_picker_nav"
+        #
+        #     textbutton _("Previous"):
+        #         action FilePagePrevious()
+        #
+        #     textbutton _("Auto"):
+        #         action FilePage("auto")
+        #
+        #     textbutton _("Quick"):
+        #         action FilePage("quick")
+        #
+        #     for i in range(1, 9):
+        #         textbutton str(i):
+        #             action FilePage(i)
+        #
+        #     textbutton _("Next"):
+        #         action FilePageNext()
 
         $ columns = 2
-        $ rows = 5
+        $ rows = 4
 
         # Display a grid of file slots.
         grid columns rows:
             transpose True
-            xfill True
+            #xfill True
             style_group "file_picker"
 
             # Display ten file slots, numbered 1 - 10.
@@ -295,13 +272,16 @@ screen file_picker():
                 # Each file slot is a button.
                 button:
                     action FileAction(i)
-                    xfill True
+                    #xfill True
+                    xsize 600
 
                     has hbox
 
+
+
                     # Add the screenshot.
                     add FileScreenshot(i)
-
+                    null width 32
                     $ file_name = FileSlotName(i, columns * rows)
                     $ file_time = FileTime(i, empty=_("Empty Slot."))
                     $ save_name = FileSaveName(i)
@@ -349,7 +329,10 @@ screen preferences():
     use navigation
 
     # Put the navigation columns in a three-wide grid.
-    grid 3 1:
+    grid 2 1:
+        xsize 0.6
+        xalign 0.3
+        yalign 0.5
         style_group "prefs"
         xfill True
 
@@ -357,94 +340,82 @@ screen preferences():
         vbox:
             frame:
                 style_group "pref"
-                has vbox
-
+                has hbox
                 label _("Display")
-                textbutton _("Window") action Preference("display", "window")
-                textbutton _("Fullscreen") action Preference("display", "fullscreen")
+
+                vbox:
+                    textbutton _("Window") action Preference("display", "window")
+                    textbutton _("Fullscreen") action Preference("display", "fullscreen")
+
+            # frame:
+            #     style_group "pref"
+            #     has vbox
+            #
+            #     label _("Transitions")
+            #     textbutton _("All") action Preference("transitions", "all")
+            #     textbutton _("None") action Preference("transitions", "none")
 
             frame:
                 style_group "pref"
-                has vbox
+                vbox:
+                    spacing 20
+                    hbox:
+                        label _("Text Speed")
+                        bar value Preference("text speed")
 
-                label _("Transitions")
-                textbutton _("All") action Preference("transitions", "all")
-                textbutton _("None") action Preference("transitions", "none")
+                    hbox:
+                        label _("Auto-Forward Time")
+                        bar value Preference("auto-forward time")
+
+                    if config.has_voice:
+                        textbutton _("Wait for Voice") action Preference("wait for voice", "toggle")
+
+            # frame:
+            #     style_group "pref"
+            #     has vbox
+            #
+            #     textbutton _("Joystick...") action Preference("joystick")
 
             frame:
                 style_group "pref"
-                has vbox
-
-                label _("Text Speed")
-                bar value Preference("text speed")
-
-            frame:
-                style_group "pref"
-                has vbox
-
-                textbutton _("Joystick...") action Preference("joystick")
-
-
-        vbox:
-            frame:
-                style_group "pref"
-                has vbox
+                has hbox
 
                 label _("Skip")
-                textbutton _("Seen Messages") action Preference("skip", "seen")
-                textbutton _("All Messages") action Preference("skip", "all")
+                vbox:
+                    textbutton _("Seen Messages") action Preference("skip", "seen")
+                    textbutton _("All Messages") action Preference("skip", "all")
 
-            frame:
-                style_group "pref"
-                has vbox
-
-                textbutton _("Begin Skipping") action Skip()
-
-            frame:
-                style_group "pref"
-                has vbox
-
-                label _("After Choices")
-                textbutton _("Stop Skipping") action Preference("after choices", "stop")
-                textbutton _("Keep Skipping") action Preference("after choices", "skip")
-
-            frame:
-                style_group "pref"
-                has vbox
-
-                label _("Auto-Forward Time")
-                bar value Preference("auto-forward time")
-
-                if config.has_voice:
-                    textbutton _("Wait for Voice") action Preference("wait for voice", "toggle")
+            # frame:
+            #     style_group "pref"
+            #     has vbox
+            #
+            #     textbutton _("Begin Skipping") action Skip()
 
         vbox:
             frame:
                 style_group "pref"
-                has vbox
+                vbox:
+                    spacing 20
+                    hbox:
+                        label _("Music Volume")
+                        bar value Preference("music volume")
+                    hbox:
+                        label _("Sound Volume")
+                        bar value Preference("sound volume")
 
-                label _("Music Volume")
-                bar value Preference("music volume")
-
+                        if config.sample_sound:
+                            textbutton _("Test"):
+                                action Play("sound", config.sample_sound)
+                                style "soundtest_button"
             frame:
                 style_group "pref"
-                has vbox
-
-                label _("Sound Volume")
-                bar value Preference("sound volume")
-
-                if config.sample_sound:
-                    textbutton _("Test"):
-                        action Play("sound", config.sample_sound)
-                        style "soundtest_button"
-            frame:
-                style_group "pref"
-                has vbox
-                
+                has hbox
                 label _("Vignette Effect")
-                textbutton _("Enabled") action SetField(persistent, "vignette", True)
-                textbutton _("Disabled") action SetField(persistent, "vignette", False)
-                
+
+                vbox:
+                    textbutton _("Enabled") action SetField(persistent, "vignette", True)
+                    textbutton _("Disabled") action SetField(persistent, "vignette", False)
+
             if config.has_voice:
                 frame:
                     style_group "pref"
@@ -458,6 +429,14 @@ screen preferences():
                         textbutton _("Test"):
                             action Play("voice", config.sample_voice)
                             style "soundtest_button"
+
+            frame:
+                style_group "pref"
+                has hbox
+                label _("After Choices")
+                vbox:
+                    textbutton _("Stop Skipping") action Preference("after choices", "stop")
+                    textbutton _("Keep Skipping") action Preference("after choices", "skip")
 
 init -2:
     style pref_frame:
@@ -566,4 +545,3 @@ init -2:
         selected_idle_color "#cc08"
         selected_hover_color "#cc0"
         insensitive_color "#4448"
-

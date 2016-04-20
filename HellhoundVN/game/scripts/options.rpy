@@ -55,29 +55,29 @@ init -1 python hide:
 
         ## The color of the text in a selected widget. (For
         ## example, the current value of a preference.)
-        widget_selected = "#F2F2F2",
+        widget_selected = "#6D5450",
 
         ## The color of a disabled widget face.
         disabled = "#898989",
 
         ## The color of disabled widget text.
-        disabled_text = "#666666",
+        disabled_text = "#1C1B1B",
 
         ## The color of informational labels.
-        label = "#c2c2c2",
+        label = "#190E16",
 
         ## The color of a frame containing widgets.
-        frame = "#252525",
+        frame = "#231E1F",
 
         ## The background of the main menu. This can be a color
         ## beginning with '#', or an image filename. The latter
         ## should take up the full height and width of the screen.
-        mm_root = "#393939",
+        mm_root = "#35302F",
 
         ## The background of the game menu. This can be a color
         ## beginning with '#', or an image filename. The latter
         ## should take up the full height and width of the screen.
-        gm_root = "#393939",
+        gm_root = "#35302F",
 
         ## If this is True, the in-game window is rounded. If False,
         ## the in-game window is square.
@@ -146,7 +146,7 @@ init -1 python hide:
 
     ## The file containing the default font.
     # Mess with this later
-    style.default.font = "tcceb.ttf"
+    style.default.font = "fonts/tcceb.ttf"
 
     ## The default size of text.
     style.default.size = 32
@@ -275,7 +275,7 @@ init -1 python hide:
     ## Should we start in fullscreen mode?
 
     config.default_fullscreen = False
-    
+
     #config.enter_transition = dissolve
     #config.exit_transition = dissolve
     #config.intra_transition = dissolve
@@ -296,52 +296,106 @@ init -1 python hide:
     config.default_afm_time = 10
 
     #########################################
-    ## More customizations can go here.
-    
-    # Dialogue Window Tweaks
-    style.say_who_window.xalign = 0.0
-    style.say_who_window.yalign = 1.0
-    style.say_who_window.left_padding = 15
-    style.say_who_window.top_padding = 15
-    style.say_who_window.right_padding = 15
-    style.say_who_window.bottom_padding = 15
-    style.say_who_window.xminimum = 150
-    style.say_who_window.yminimum = 15
-    style.say_who_window.xfill = False
-    
-    style.say_label.drop_shadow = [(1, 1)]
-    style.say_label.drop_shadow_color = "#000000"
-    style.say_label.size = 36
-    style.say_label.text_align = 0.5
-    style.say_label.xalign = 0.5
+
+    style.frame.background = Frame("images/gui/frame.png", 48, 48)
+    style.frame.xpadding = 35
+    style.frame.ypadding = 30
+
+    style.label_text.size = 36
+    style.label_text.color = "#190E16"
+
+    style.pref_button_text.size = 36
+    style.pref_button.yminimum = 105
+    style.pref_button.xminimum = 300
+
+    style.window.background = Image("images/gui/dialogue_box.png")
+    style.window.top_padding = 32
+    #style.window.yalign = 1.0
+
+    #style.say_who_window.xalign = 0.0
+    #style.say_who_window.yalign = 1.0
+    #style.say_who_window.left_padding = 15
+    #style.say_who_window.top_padding = 15
+    #style.say_who_window.right_padding = 15
+    #style.say_who_window.bottom_padding = 15
+    #style.say_who_window.xminimum = 150
+    #style.say_who_window.yminimum = 15
+    #style.say_who_window.xfill = False
+    style.say_who_window.background = None
+    style.say_who_window.yoffset = 50
+
+    #style.say_label.drop_shadow = [(1, 1)]
+    #style.say_label.drop_shadow_color = "#000000"
+    style.say_label.size = 42
+    #style.say_label.text_align = 0.5
+    #style.say_label.xalign = 0.5
+    style.say_label.font = "fonts/playtime.ttf"
+
+    style.say_dialogue.font = "fonts/playtime.ttf"
+    style.say_dialogue.size = 42
+    style.say_window.left_padding = 160
+    style.say_dialogue.color = "#E0D6CD"
+
+
 
     style.button.insensitive_background = Frame("images/gui/button_ground.png", left=32, top=24, right= 32, bottom=48)
     style.button.background = Frame("images/gui/button_idle.png", left=32, top=24, right= 32, bottom=48)
     style.button.hover_background = Frame("images/gui/button_hover.png", left=32, top=24, right= 32, bottom=48)
     style.button.selected_background = Frame("images/gui/button_selected_idle.png", left=32, top=24, right= 32, bottom=48)
     style.button.selected_hover_background = Frame("images/gui/button_selected_hover.png", left=32, top=24, right= 32, bottom=48)
+
+
     style.button.yminimum = 115
     style.button.xminimum = 300
-    
+    style.button.selected_top_padding = 15
+
     style.button.focus_mask = Image("images/gui/button_focus_mask.png")
-    
+
     style.button.bottom_padding = 32
     style.button.xpadding = 32
-    
+
     style.button_text.size = 46
     style.button_text.color = "#190E16"
+    style.button_text.hover_color = "#28101A"
+    style.button_text.selected_color = "#633431"
+    style.button_text.selected_hover_color = "#7D423E"
+
+    style.mm_button.insensitive_background = Frame("images/gui/button_ground.png", left=32, top=24, right= 32, bottom=48)
+
+    style.file_picker_button.idle_background = Frame("images/gui/button_idle.png", left=32, top=24, right= 32, bottom=48)
+    style.file_picker_button.insensitive_background = Frame("images/gui/button_ground.png", left=32, top=24, right= 32, bottom=48)
+    style.file_picker_button.hover_background = Frame("images/gui/button_hover.png", left=32, top=24, right= 32, bottom=48)
+    #style.file_picker_button.selected_background = Frame("images/gui/button_selected_idle.png", left=32, top=24, right= 32, bottom=48)
+    #style.file_picker_button.selected_hover_background = Frame("images/gui/button_selected_hover.png", left=32, top=24, right= 32, bottom=48)
+
+    style.file_picker_button.xpadding = 41
+    style.file_picker_button.top_padding = 24
+    style.file_picker_button.bottom_padding = 48
+
+    style.file_picker_text.size = 32
+    style.file_picker_text.color = "#190E16"
+    style.file_picker_text.hover_color = "#28101A"
+    #style.file_picker_text.selected_color = "#633431"
+    #style.file_picker_text.selected_hover_color = "#7D423E"
+    style.file_picker_text.insensitive_color = "#1F1C1C"
+
+
+    ## Adjust screenshot size for save slots
+    config.thumbnail_width = 230
+    config.thumbnail_height = 129
+
+    style.quick_button_text.size = 24
+
     #style.button_text.outlines = [(2, "#f76e60", 0, 0)]
     #style.button_text.outlines = (2, "#f76e60", 0, 0)
-    
-    #style.window.background = Image("images/gui/dialogue_box.png")
-    
+
     # Vignette effect
-    
+
     # This allows for the effect to be toggled
     def vignette_overlay():
         if persistent.vignette:
             ui.image("images/backgrounds/vignette.png")
-    
+
     #We have to move the text layer up now too
     config.layers = ['master', 'overlay', 'text', 'transient', 'screens', ]
     config.say_layer="text"
