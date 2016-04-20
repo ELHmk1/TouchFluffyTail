@@ -146,7 +146,7 @@ init -1 python hide:
 
     ## The file containing the default font.
     # Mess with this later
-    style.default.font = "assets/playtime.ttf"
+    style.default.font = "tcceb.ttf"
 
     ## The default size of text.
     style.default.size = 32
@@ -276,16 +276,16 @@ init -1 python hide:
 
     config.default_fullscreen = False
     
-    config.enter_transition = dissolve
-    config.exit_transition = dissolve
-    config.intra_transition = dissolve
-    config.main_game_transition = dissolve
-    config.game_main_transition = dissolve
-    config.end_splash_transition = dissolve
-    config.end_game_transition = dissolve
-    config.after_load_transition = dissolve
-    config.window_show_transition = dissolve
-    config.window_hide_transition = dissolve
+    #config.enter_transition = dissolve
+    #config.exit_transition = dissolve
+    #config.intra_transition = dissolve
+    #config.main_game_transition = dissolve
+    #config.game_main_transition = dissolve
+    #config.end_splash_transition = dissolve
+    #config.end_game_transition = dissolve
+    #config.after_load_transition = dissolve
+    #config.window_show_transition = dissolve
+    #config.window_hide_transition = dissolve
 
     ## The default text speed in characters per second. 0 is infinite.
 
@@ -314,15 +314,33 @@ init -1 python hide:
     style.say_label.size = 36
     style.say_label.text_align = 0.5
     style.say_label.xalign = 0.5
+
+    style.button.insensitive_background = Frame("images/gui/button_ground.png", left=32, top=24, right= 32, bottom=48)
+    style.button.background = Frame("images/gui/button_idle.png", left=32, top=24, right= 32, bottom=48)
+    style.button.hover_background = Frame("images/gui/button_hover.png", left=32, top=24, right= 32, bottom=48)
+    style.button.selected_background = Frame("images/gui/button_selected_idle.png", left=32, top=24, right= 32, bottom=48)
+    style.button.selected_hover_background = Frame("images/gui/button_selected_hover.png", left=32, top=24, right= 32, bottom=48)
+    style.button.yminimum = 115
+    style.button.xminimum = 300
     
-    #style.window.background = Image("assets/gui/dialogue_box.png")
+    style.button.focus_mask = Image("images/gui/button_focus_mask.png")
+    
+    style.button.bottom_padding = 32
+    style.button.xpadding = 32
+    
+    style.button_text.size = 46
+    style.button_text.color = "#190E16"
+    #style.button_text.outlines = [(2, "#f76e60", 0, 0)]
+    #style.button_text.outlines = (2, "#f76e60", 0, 0)
+    
+    #style.window.background = Image("images/gui/dialogue_box.png")
     
     # Vignette effect
     
     # This allows for the effect to be toggled
     def vignette_overlay():
         if persistent.vignette:
-            ui.image("assets/backgrounds/vignette.png")
+            ui.image("images/backgrounds/vignette.png")
     
     #We have to move the text layer up now too
     config.layers = ['master', 'overlay', 'text', 'transient', 'screens', ]

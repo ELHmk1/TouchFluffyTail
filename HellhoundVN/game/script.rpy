@@ -3,13 +3,10 @@
 
 #########################################
 # Defines backgrounds we'll use
-image bg outside = "assets/backgrounds/outside_bg.png"
-image bg outside_rain = im.MatrixColor("assets/backgrounds/outside_bg.png", im.matrix.tint(0.7, 0.7, 0.7))
-image bg shower = "assets/backgrounds/bathroom_bg.png"
 image bg apartment = Placeholder("bg")
 image bg bedroom = Placeholder("bg")
 image black = Solid((0, 0, 0, 255))
-image insert_cg1 = "assets/CGs/insert_cg1.png"
+image insert_cg1 = "images/CGs/insert_cg1.png"
 
 #########################################
 # Defines sprites we'll use
@@ -21,12 +18,12 @@ image insert_cg1 = "assets/CGs/insert_cg1.png"
 #The _u suffix denotes the fact Fia's tail is raised (Default on Fire/Nude)
 
 
-image fia neutral = DynamicDisplayable(draw_clothing, character=fia, art_path="assets/sprites/fia/", eyes="neutral", brows="neutral", mouth="neutral", ears="up", tail="down", blush="", flames=False)
-image fia smile = DynamicDisplayable(draw_clothing, character=fia, art_path="assets/sprites/fia/", eyes="squint", brows="raised", mouth="smile", ears="up", tail="up", blush="light", flames=False)
-image fia pout = DynamicDisplayable(draw_clothing, character=fia, art_path="assets/sprites/fia/", eyes="squint", brows="middleup", mouth="pout", ears="down", tail="down", blush="light", flames=False)
-image fia grin fire = DynamicDisplayable(draw_clothing, character=fia, art_path="assets/sprites/fia/", eyes="squint2", brows="raised2", mouth="widegrin", ears="up", tail="up", blush="strong", flames=True)
-image fia smile fire = DynamicDisplayable(draw_clothing, character=fia, art_path="assets/sprites/fia/", eyes="squint2", brows="raised2", mouth="smile", ears="up", tail="up", blush="strong", flames=True)
-image fia bite fire = DynamicDisplayable(draw_clothing, character=fia, art_path="assets/sprites/fia/", eyes="halfopen", brows="raised", mouth="lipbite", ears="up", tail="up", blush="strong", flames=True)
+image fia neutral = DynamicDisplayable(draw_clothing, character=fia, art_path="images/sprites/fia/", eyes="neutral", brows="neutral", mouth="neutral", ears="up", tail="down", blush="", flames=False)
+image fia smile = DynamicDisplayable(draw_clothing, character=fia, art_path="images/sprites/fia/", eyes="squint", brows="raised", mouth="smile", ears="up", tail="up", blush="light", flames=False)
+image fia pout = DynamicDisplayable(draw_clothing, character=fia, art_path="images/sprites/fia/", eyes="squint", brows="middleup", mouth="pout", ears="down", tail="down", blush="light", flames=False)
+image fia grin fire = DynamicDisplayable(draw_clothing, character=fia, art_path="images/sprites/fia/", eyes="squint2", brows="raised2", mouth="widegrin", ears="up", tail="up", blush="strong", flames=True)
+image fia smile fire = DynamicDisplayable(draw_clothing, character=fia, art_path="images/sprites/fia/", eyes="squint2", brows="raised2", mouth="smile", ears="up", tail="up", blush="strong", flames=True)
+image fia bite fire = DynamicDisplayable(draw_clothing, character=fia, art_path="images/sprites/fia/", eyes="halfopen", brows="raised", mouth="lipbite", ears="up", tail="up", blush="strong", flames=True)
 
 #########################################
 # Define the characters we'll use
@@ -46,23 +43,42 @@ define mc_nvl = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled
 #########################################
 #Transitions, variables, and what not
 init:
-    $ circirisout = ImageDissolve("assets/backgrounds/circleiris.png", 1.5, 8)
-    $ circirisin = ImageDissolve("assets/backgrounds/circleiris.png", 1.5, 8, reverse=True)
-    
+    $ circirisout = ImageDissolve("images/backgrounds/circleiris.png", 1.5, 8)
+    $ circirisin = ImageDissolve("images/backgrounds/circleiris.png", 1.5, 8, reverse=True)
+
     image rain:
-        "assets/backgrounds/rain.png"
-        0.05
-        "assets/backgrounds/rain2.png"
-        0.05
-        "assets/backgrounds/rain3.png"
-        0.05
+        "images/backgrounds/rain.png"
+        0.033334
+        "images/backgrounds/rain2.png"
+        0.033334
+        "images/backgrounds/rain3.png"
+        0.033334
+        "images/backgrounds/rain4.png"
+        0.033334
+        "images/backgrounds/rain5.png"
+        0.033334
+        "images/backgrounds/rain6.png"
+        0.033334
+
+        "images/backgrounds/rain4.png"
+        0.033334
+        "images/backgrounds/rain2.png"
+        0.033334
+        "images/backgrounds/rain.png"
+        0.033334
+        "images/backgrounds/rain4.png"
+        0.033334
+        "images/backgrounds/rain3.png"
+        0.033334
+        "images/backgrounds/rain6.png"
+        0.033334
         repeat
     
     #Click to continue indicator
     image ctc_blink:
-        "assets/sprites/ctc01.png"
+        "images/sprites/ctc01.png"
         linear 0.5 alpha 1.0
-        "assets/sprites/ctc03.png"
+        "images/sprites/ctc03.png"
         linear 0.5 alpha 1.0
         repeat
     
@@ -272,7 +288,7 @@ label wetshirt:
     "I'm honestly impressed at that."
     "Though the rain hits us proper before I can respond."
     
-    scene bg outside_rain
+    scene bg outside rain
     show rain 
     with dissolve
     "The next few minutes are a whirl of us sputtering and trying to make a makeshift covering."
@@ -473,7 +489,7 @@ label apartment:
 
 #Actual sex scene
 label shower_sex:
-    scene insert_cg1 with fade
+    scene ev shower1 with fade
     pause
     "The words are hardly out of her mouth before I move into place behind her."
     "Between the steam, running water, and her own juices, Fia's a sopping mess."
