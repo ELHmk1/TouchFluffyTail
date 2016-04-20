@@ -86,12 +86,15 @@ init python:
 
     state = "dry"
 
+
+    sportsbra = Clothing("white_sportsbra", priority=10, wettable=True, barbie=True)
     shirt = Clothing("shirt", priority=10, wettable=True, barbie=True)
     hotpants = Clothing("hotpants", priority=10, wettable=True)
+    shorts = Clothing("shorts", priority=10, wettable=True)
     sweater = Clothing("sweater", priority=10, wettable=True)
 
-    fia.wear(shirt)
-    fia.wear(hotpants)
+    fia.wear(sportsbra)
+    fia.wear(shorts)
 
     #NVL stuff
     menu = nvl_menu
