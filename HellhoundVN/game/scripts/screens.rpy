@@ -330,8 +330,8 @@ screen preferences():
 
     # Put the navigation columns in a three-wide grid.
     grid 2 1:
-        xsize 0.6
-        xalign 0.3
+        xsize 0.65
+        xalign 0.25
         yalign 0.5
         style_group "prefs"
         xfill True
@@ -359,12 +359,15 @@ screen preferences():
                 style_group "pref"
                 vbox:
                     spacing 20
+
                     hbox:
+                        xfill True
                         label _("Text Speed")
                         bar value Preference("text speed")
 
                     hbox:
-                        label _("Auto-Forward Time")
+                        xfill True
+                        label _("Auto-Forward")
                         bar value Preference("auto-forward time")
 
                     if config.has_voice:
@@ -397,9 +400,11 @@ screen preferences():
                 vbox:
                     spacing 20
                     hbox:
+                        xfill True
                         label _("Music Volume")
                         bar value Preference("music volume")
                     hbox:
+                        xfill True
                         label _("Sound Volume")
                         bar value Preference("sound volume")
 

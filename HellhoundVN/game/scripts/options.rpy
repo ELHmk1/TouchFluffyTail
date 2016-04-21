@@ -297,6 +297,21 @@ init -1 python hide:
 
     #########################################
 
+
+    style.slider.left_bar = Frame("images/gui/bar_full.png", 30, 40)
+    style.slider.right_bar = Frame("images/gui/bar_empty.png", 30, 40)
+    style.slider.hover_left_bar = Frame("images/gui/bar_hover.png", 30, 40)
+    style.slider.thumb = None
+    style.slider.thumb_offset = 0
+    style.slider.ysize = 75
+    style.slider.xsize = 300
+    style.slider.left_gutter = 7
+    style.slider.right_gutter = 7
+
+    style.pref_slider.xsize = 300
+    #style.pref_slider.xanchor= 1.0
+
+
     style.frame.background = Frame("images/gui/frame.png", 48, 48)
     style.frame.xpadding = 35
     style.frame.ypadding = 30
