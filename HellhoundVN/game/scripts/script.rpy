@@ -1,4 +1,5 @@
 ﻿label start:
+    $ game_running = True
     #Start the VN with the MC resting
     scene black with fade
     centered "Keep in mind this is a teaser."

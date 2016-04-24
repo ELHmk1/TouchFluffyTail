@@ -72,12 +72,12 @@ init -1 python hide:
         ## The background of the main menu. This can be a color
         ## beginning with '#', or an image filename. The latter
         ## should take up the full height and width of the screen.
-        mm_root = "#35302F",
+        mm_root = "#261F1E",
 
         ## The background of the game menu. This can be a color
         ## beginning with '#', or an image filename. The latter
         ## should take up the full height and width of the screen.
-        gm_root = "#35302F",
+        gm_root = "#261F1E",
 
         ## If this is True, the in-game window is rounded. If False,
         ## the in-game window is square.
@@ -297,6 +297,9 @@ init -1 python hide:
 
     #########################################
 
+    style.hyperlink_text.color = "#912330"
+    style.hyperlink_text.hover_color = "#BA6236"
+
 
     style.slider.left_bar = Frame("images/gui/bar_full.png", 30, 40)
     style.slider.right_bar = Frame("images/gui/bar_empty.png", 30, 40)
@@ -317,7 +320,7 @@ init -1 python hide:
     style.frame.ypadding = 30
 
     style.label_text.size = 36
-    style.label_text.color = "#190E16"
+    style.label_text.color = "#4C3531"
 
     style.pref_button_text.size = 36
     style.pref_button.yminimum = 105

@@ -1,4 +1,5 @@
-﻿##############################################################################
+
+##############################################################################
 # Say
 #
 # Screen that's used to display adv-mode dialogue.
@@ -148,6 +149,7 @@ screen nvl(dialogue, items=None):
 # http://www.renpy.org/doc/html/screen_special.html#main-menu
 
 screen main_menu():
+    $ game_running = False
 
     # This ensures that any other menu screen is replaced.
     tag menu
@@ -160,14 +162,15 @@ screen main_menu():
     frame:
         style_group "mm"
         xalign .98
-        yalign .98
+        ypos 110
 
         has vbox
 
         textbutton _("Start Game") action Start()
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Preferences") action ShowMenu("preferences")
-        textbutton _("Credits") action Start("credits")
+        textbutton _("About") action ShowMenu("about")
+        #textbutton _("Credits") action Start("credits")
         #textbutton _("Help") action Help()
         textbutton _("Quit") action Quit(confirm=False)
 
@@ -186,32 +189,57 @@ init -2:
 # navigation and background.
 # http://www.renpy.org/doc/html/screen_special.html#navigation
 screen navigation():
-
-    # The background of the game menu.
     window:
         style "gm_root"
 
-    # The various buttons.
     frame:
         #style_group "gm_nav"
         xalign .98
-        yalign .98
+        ypos 110
 
         has vbox
 
-        textbutton _("Return") action Return()
-        textbutton _("Preferences") action ShowMenu("preferences")
-        textbutton _("Save Game") action ShowMenu("save")
+        if game_running:
+            textbutton _("Save Game") action ShowMenu("save")
+        else:
+            textbutton _("Start Game") action Start()
         textbutton _("Load Game") action ShowMenu("load")
-        textbutton _("Main Menu") action MainMenu()
+        textbutton _("Preferences") action ShowMenu("preferences")
+        textbutton _("About") action ShowMenu("about")
+        if game_running:
+            textbutton _("Main Menu") action MainMenu()
         #textbutton _("Help") action Help()
         textbutton _("Quit") action Quit()
+        textbutton _("Return") action Return()
+
+screen mm_navigation():
+    window:
+        style "gm_root"
+
+    frame:
+        #style_group "gm_nav"
+        xalign .98
+        ypos 20
+
+        has vbox
+
+        #textbutton _("Save Game") action ShowMenu("save")
+        textbutton _("Start Game") action Start()
+        textbutton _("Load Game") action ShowMenu("load")
+        textbutton _("Preferences") action ShowMenu("preferences")
+        textbutton _("About") action ShowMenu("about")
+        #textbutton _("Main Menu") action MainMenu()
+        #textbutton _("Help") action Help()
+        textbutton _("Quit") action Quit()
+        textbutton _("Return") action Return()
 
 init -2:
 
     # Make all game menu navigation buttons the same size.
     style gm_nav_button:
         size_group "gm_nav"
+
+
 
 
 ##############################################################################
@@ -225,16 +253,20 @@ init -2:
 # a single screen, file_picker. We then use the file_picker screen
 # from simple load and save screens.
 
-screen file_picker():
+screen file_picker(operation):
 
     frame:
+
         #style "file_picker_frame"
 
         xpadding 50 ypadding 50
-        xmargin 70 ymargin 70
+        xmargin 100 ymargin 50
         xsize 0.7
 
         has vbox
+
+        label "{size=48}[operation]{/size}"
+        null height 30
 
         # The buttons at the top allow the user to pick a
         # page of files.
@@ -297,7 +329,7 @@ screen save():
     tag menu
 
     use navigation
-    use file_picker
+    use file_picker("Save Game")
 
 screen load():
 
@@ -305,7 +337,7 @@ screen load():
     tag menu
 
     use navigation
-    use file_picker
+    use file_picker("Load Game")
 
 init -2:
     style file_picker_frame is menu_frame

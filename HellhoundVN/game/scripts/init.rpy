@@ -81,6 +81,7 @@ init:
     $ flash = Fade(.25, 0, .75, color="#fff")
 
 init python:
+    game_running = False
     narrator = Character(None, window_left_padding=160)
     fia = Actor()
 
