@@ -157,6 +157,8 @@ screen main_menu():
     # The background of the main menu.
     window:
         style "mm_root"
+        add "images/gui/logo.png"
+        text "[version]" color "#7C1919" xalign 0.99 yalign 0.99
 
     # The main menu buttons.
     frame:
@@ -359,6 +361,8 @@ screen preferences():
 
     # Include the navigation.
     use navigation
+
+    text "[version]" color "#7C1919" xalign 0.99 yalign 0.99
 
     # Put the navigation columns in a three-wide grid.
     grid 2 1:

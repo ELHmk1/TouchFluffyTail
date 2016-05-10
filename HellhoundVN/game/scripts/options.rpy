@@ -1,35 +1,19 @@
-﻿## This file contains some of the options that can be changed to customize
-## your Ren'Py game. It only contains the most common options... there
-## is quite a bit more customization you can do.
-##
-## Lines beginning with two '#' marks are comments, and you shouldn't
-## uncomment them. Lines beginning with a single '#' mark are
-## commented-out code, and you may want to uncomment them when
-## appropriate.
+init -2 python:
+    version = "v0.1-pre"
 
 init -1 python hide:
-
-    ## Should we enable the use of developer tools? This should be
-    ## set to False before the game is released, so the user can't
-    ## cheat using developer tools.
-
     config.developer = True
-
-    ## These control the width and height of the screen.
 
     config.screen_width = 1920
     config.screen_height = 1080
     config.framerate = 60
 
-    ## This controls the title of the window, when Ren'Py is
-    ## running in a window.
-
-    config.window_title = u"Hellhound VN - TEASER"
+    config.window_title = u"Hellhound VN - %s" %version
 
     # These control the name and version of the game, that are reported
     # with tracebacks and other debugging logs.
-    config.name = "Hellhound TEASER"
-    config.version = "0.1b"
+    config.name = "Hellhound VN"
+    config.version = version
 
     #########################################
     # Themes
@@ -72,12 +56,14 @@ init -1 python hide:
         ## The background of the main menu. This can be a color
         ## beginning with '#', or an image filename. The latter
         ## should take up the full height and width of the screen.
-        mm_root = "#261F1E",
+        # mm_root = "#261F1E",
+        mm_root = "images/backgrounds/title.png",
 
         ## The background of the game menu. This can be a color
         ## beginning with '#', or an image filename. The latter
         ## should take up the full height and width of the screen.
-        gm_root = "#261F1E",
+        # gm_root = "#261F1E",
+        gm_root = "images/backgrounds/title_blur.png",
 
         ## If this is True, the in-game window is rounded. If False,
         ## the in-game window is square.
